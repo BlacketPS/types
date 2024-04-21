@@ -1,1 +1,1 @@
-export * from "./OpenPackBlook";
+export * from "./openPackBlook.entity";

@@ -1,8 +1,9 @@
 import { Column, Model, Table, DataType, ForeignKey, BelongsTo } from "sequelize-typescript";
 import { User } from ".";
 
-import { randomUUID } from "crypto";
+import { randomUUID } from "node:crypto";
 
+// TODO: separate enums like this into an enum folder on models
 export enum FormStatus {
     PENDING = 1,
     ACCEPTED = 2,
