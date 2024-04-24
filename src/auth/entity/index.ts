@@ -1,1 +1,1 @@
-export * from "./AuthToken.entity";
+export * from "./auth.entity";

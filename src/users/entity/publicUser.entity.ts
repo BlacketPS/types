@@ -4,19 +4,21 @@ import { Resource, Blook } from "src/models";
 export class PublicUser {
     id: string;
 
+    username: string;
+
     avatar: string | Resource;
     banner: string | Resource;
 
-    customAvatar: string | Resource | null;
-    customBanner: string | Resource | null;
+    customAvatar?: string | Resource;
+    customBanner?: string | Resource;
 
     blooks: object | Blook[];
 
     @Exclude()
-    password: string;
+    password?: string
 
     @Exclude()
-    ipAddress: string;
+    ipAddress?: string;
 
     constructor(partial: Partial<PublicUser>) {
         Object.assign(this, partial);
