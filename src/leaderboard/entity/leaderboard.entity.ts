@@ -1,25 +1,9 @@
 import { Resource } from "src/models";
+import { PublicUser } from "src/users";
 
 export class LeaderboardEntity {
-    tokens: Array<{
-        id: string;
-        username: string;
-        titleId: string;
-        color: string;
-        tokens: number;
-        avatar: string | Resource;
-        customAvatar: string | Resource | null;
-    }>;
-
-    experience: Array<{
-        id: string;
-        username: string;
-        titleId: string;
-        color: string;
-        experience: number;
-        avatar: string | Resource;
-        customAvatar: string | Resource | null;
-    }>;
+    tokens: Array<PublicUser>;
+    experience: Array<PublicUser>;
 
     constructor(partial: Partial<LeaderboardEntity>) {
         Object.assign(this, partial);
