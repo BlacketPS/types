@@ -9,3 +9,4 @@ export * from "./forms";
 export * from "./models";
 export * from "./settings";
 export * from "./blooks";
+export * from "./chat";

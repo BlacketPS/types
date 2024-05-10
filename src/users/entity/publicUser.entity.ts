@@ -1,5 +1,5 @@
 import { Exclude } from "class-transformer";
-import { Resource, Blook, UserSetting } from "src/models";
+import { Resource, Blook, UserSetting, Title, Font } from "src/models";
 
 interface Settings extends UserSetting {
     otpEnabled?: boolean;
@@ -18,9 +18,12 @@ export class PublicUser {
 
     color: string;
 
-    blooks: object | Blook[];
+    titleId: Title["id"];
+    fontId: Font["id"];
 
-    settings: Settings;
+    blooks?: object | Blook[];
+
+    settings?: Settings;
 
     tokens: number;
     experience: number;
@@ -43,13 +46,13 @@ export class PublicUser {
         this.customAvatar = (this.customAvatar as Resource)?.path ?? null;
         this.customBanner = (this.customBanner as Resource)?.path ?? null;
 
-        this.blooks = (this.blooks as Blook[]).flatMap((blook: Blook) => blook.id).reduce((acc, curr) => {
+        if (this.blooks) this.blooks = (this.blooks as Blook[]).flatMap((blook: Blook) => blook.id).reduce((acc, curr) => {
             const key = String(curr);
 
             return { ...acc, [key]: acc[key] ? ++acc[key] : 1 };
         }, {});
 
-        this.settings.otpEnabled = this.settings.otpSecret ? true : false;
-        this.settings.otpSecret = undefined;
+        if (this.settings) this.settings.otpEnabled = this.settings.otpSecret ? true : false;
+        if (this.settings) this.settings.otpSecret = undefined;
     }
 }
