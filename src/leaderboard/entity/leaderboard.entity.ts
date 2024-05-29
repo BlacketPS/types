@@ -1,5 +1,5 @@
 import { Resource } from "src/models";
-import { PublicUser } from "src/users";
+import { PublicUser } from "../../users";
 
 export class LeaderboardEntity {
     tokens: Array<PublicUser>;

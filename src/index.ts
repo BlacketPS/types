@@ -10,3 +10,5 @@ export * from "./models";
 export * from "./settings";
 export * from "./blooks";
 export * from "./chat";
+export * from "./discord";
+export * from "./staff";
