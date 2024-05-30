@@ -18,9 +18,6 @@ export class StaffAdminUpdateBlookDto {
     readonly packId?: number;
 
     @IsOptional()
-    readonly priority?: number;
-
-    @IsOptional()
     readonly imageId?: number;
 
     @IsOptional()
