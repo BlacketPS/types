@@ -18,6 +18,10 @@ export class StaffAdminCreatePackDto {
     @IsNotEmpty()
     @Validate((value: string) => /^#[0-9A-F]{6}$/i.test(value))
     readonly outerColor: string;
+
+    @IsNotEmpty()
+    @Validate((value: boolean) => typeof value === "boolean")
+    readonly enabled: boolean;
 }
 
 export default StaffAdminCreatePackDto;
