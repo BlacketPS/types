@@ -1,4 +1,4 @@
-import { IsNotEmpty, Validate } from "class-validator";
+import { IsNotEmpty, Length, Matches, Validate } from "class-validator";
 
 export class StaffAdminCreatePackDto {
     @IsNotEmpty()
@@ -12,11 +12,15 @@ export class StaffAdminCreatePackDto {
     readonly imageId: number;
 
     @IsNotEmpty()
-    @Validate((value: string) => /^#[0-9A-F]{6}$/i.test(value))
+    @Length(7)
+    @Matches(/^#[0-9a-fA-F]{6}$/)
+    @Validate((value: string) => value.length === 7)
     readonly innerColor: string;
 
     @IsNotEmpty()
-    @Validate((value: string) => /^#[0-9A-F]{6}$/i.test(value))
+    @Length(7, 7)
+    @Matches(/^#[0-9a-fA-F]{6}$/)
+    @Validate((value: string) => value.length === 7)
     readonly outerColor: string;
 
     @IsNotEmpty()

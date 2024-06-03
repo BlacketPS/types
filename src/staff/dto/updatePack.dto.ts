@@ -1,4 +1,4 @@
-import { IsOptional, Validate } from "class-validator";
+import { IsOptional, Length, Matches, Validate } from "class-validator";
 
 export class StaffAdminUpdatePackDto {
     @Validate((value: string) => value.length > 0)
@@ -12,12 +12,20 @@ export class StaffAdminUpdatePackDto {
     readonly imageId?: number;
 
     @IsOptional()
-    @Validate((value: string) => /^#[0-9A-F]{6}$/i.test(value))
-    readonly innerColor?: string;
+    @Length(7)
+    @Matches(/^#[0-9a-fA-F]{6}$/)
+    @Validate((value: string) => value.length === 7)
+    readonly innerColor: string;
 
     @IsOptional()
-    @Validate((value: string) => /^#[0-9A-F]{6}$/i.test(value))
-    readonly outerColor?: string;
+    @Length(7, 7)
+    @Matches(/^#[0-9a-fA-F]{6}$/)
+    @Validate((value: string) => value.length === 7)
+    readonly outerColor: string;
+
+    @IsOptional()
+    @Validate((value: boolean) => typeof value === "boolean")
+    readonly enabled: boolean;
 }
 
 export default StaffAdminUpdatePackDto;
