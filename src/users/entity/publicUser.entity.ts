@@ -1,5 +1,5 @@
 import { Exclude } from "class-transformer";
-import { Resource, Blook, UserSetting, Title, Font } from "src/models";
+import { Resource, UserSetting, Title, Font, UserBlook } from "src/models";
 
 interface Settings extends UserSetting {
     otpEnabled?: boolean;
@@ -10,8 +10,8 @@ export class PublicUser {
 
     username: string;
 
-    avatar: string | Resource;
-    banner: string | Resource;
+    avatarId: Resource["id"];
+    bannerId: Resource["id"];
 
     customAvatar?: string | Resource;
     customBanner?: string | Resource;
@@ -21,7 +21,7 @@ export class PublicUser {
     titleId: Title["id"];
     fontId: Font["id"];
 
-    blooks?: object | Blook[];
+    blooks?: object | UserBlook[];
 
     settings?: Settings;
 
@@ -40,13 +40,10 @@ export class PublicUser {
         this.password = undefined;
         this.ipAddress = undefined;
 
-        this.avatar = (this.avatar as Resource).path;
-        this.banner = (this.banner as Resource).path;
-
         this.customAvatar = (this.customAvatar as Resource)?.path ?? null;
         this.customBanner = (this.customBanner as Resource)?.path ?? null;
 
-        if (this.blooks) this.blooks = (this.blooks as Blook[]).flatMap((blook: Blook) => blook.id).reduce((acc, curr) => {
+        if (this.blooks) this.blooks = (this.blooks as UserBlook[]).flatMap((blook) => blook.blookId).reduce((acc, curr) => {
             const key = String(curr);
 
             return { ...acc, [key]: acc[key] ? ++acc[key] : 1 };

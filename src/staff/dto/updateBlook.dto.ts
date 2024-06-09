@@ -15,13 +15,13 @@ export class StaffAdminUpdateBlookDto {
     readonly rarityId?: number;
 
     @IsOptional()
-    readonly packId?: number;
-
-    @IsOptional()
     readonly imageId?: number;
 
     @IsOptional()
     readonly backgroundId?: number;
+
+    @IsOptional()
+    readonly packId?: number | null;
 }
 
 export default StaffAdminUpdateBlookDto;

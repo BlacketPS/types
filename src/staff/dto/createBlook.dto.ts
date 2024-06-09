@@ -22,7 +22,7 @@ export class StaffAdminCreateBlookDto {
 
     @IsNotEmpty()
     @IsOptional()
-    readonly packId?: number;
+    readonly packId?: number | null;
 }
 
 export default StaffAdminCreateBlookDto;

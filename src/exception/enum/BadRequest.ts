@@ -8,5 +8,6 @@ export enum BadRequest {
     AUTH_FORMS_ENABLED = "You can not register an account while user forms are enabled.",
     FORMS_FORMS_DISABLED = "You can not create a form while user forms are disabled.",
     SETTINGS_INVALID_SETTING_VALUE = "The value you entered for the setting is invalid.",
-    SETTINGS_OTP_ALREADY_ENABLED = "You have already enabled OTP on your account."
+    SETTINGS_OTP_ALREADY_ENABLED = "You have already enabled OTP on your account.",
+    STAFF_ADMIN_INVALID_PRIORITIES = "Invalid priorities."
 };
