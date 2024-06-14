@@ -1,16 +1,10 @@
 import { Column, Model, Table, DataType, HasMany } from "sequelize-typescript";
-import { Blook } from ".";
+import { Blook } from "./index";
 
-export enum AnimationType {
-    UNCOMMON = 1,
-    RARE = 2,
-    EPIC = 3,
-    LEGENDARY = 4,
-    CHROMA = 5
-}
+import { RarityAnimationType } from "./enum";
 
 @Table({ tableName: "rarity" })
-export default class Rarity extends Model<Rarity> {
+export class Rarity extends Model<Rarity> {
     @Column({ type: DataType.INTEGER, primaryKey: true, autoIncrement: true })
     declare id: number;
 
@@ -29,9 +23,9 @@ export default class Rarity extends Model<Rarity> {
     @Column({
         type: DataType.INTEGER,
         allowNull: false,
-        validate: { isIn: { args: [Object.values(AnimationType)], msg: `animationType must be one of these values: ${Object.keys(AnimationType).join(", ")}` } }
+        validate: { isIn: { args: [Object.values(RarityAnimationType)], msg: `animationType must be one of these values: ${Object.keys(RarityAnimationType).join(", ")}` } }
     })
-    animationType: AnimationType;
+    animationType: RarityAnimationType;
 
     @Column({ type: DataType.INTEGER, allowNull: false })
     experience: number;

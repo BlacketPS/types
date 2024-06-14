@@ -1,13 +1,10 @@
 import { Column, Model, Table, DataType, BelongsTo, ForeignKey, HasMany } from "sequelize-typescript";
-import { Rarity, Resource, Auction } from ".";
+import { Rarity, Resource, Auction } from "./index";
 
-export enum ItemType {
-    NONE = 1,
-    BOOSTER = 2
-}
+import { ItemType } from "./enum";
 
 @Table({ tableName: "item" })
-export default class Item extends Model<Item> {
+export class Item extends Model<Item> {
     @Column({ type: DataType.INTEGER, primaryKey: true, autoIncrement: true })
     declare id: number;
 
@@ -53,8 +50,4 @@ export default class Item extends Model<Item> {
 
     @HasMany(() => Auction)
     auctions?: Auction[];
-
-    get imagePath(): string {
-        return this.image.path;
-    }
 }

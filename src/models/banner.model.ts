@@ -1,8 +1,8 @@
 import { Column, Model, Table, DataType, BelongsTo, ForeignKey } from "sequelize-typescript";
-import { Resource } from ".";
+import { Resource } from "./index";
 
 @Table({ tableName: "banner" })
-export default class Banner extends Model<Banner> {
+export class Banner extends Model<Banner> {
     @Column({ type: DataType.INTEGER, primaryKey: true, autoIncrement: true })
     declare id: number;
 
@@ -18,8 +18,4 @@ export default class Banner extends Model<Banner> {
 
     @Column({ type: DataType.INTEGER, allowNull: false, defaultValue: 0 })
     priority: number;
-
-    get imagePath() {
-        return this.image.path;
-    }
 }

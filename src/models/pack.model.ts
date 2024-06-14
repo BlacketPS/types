@@ -1,8 +1,8 @@
 import { Column, Model, Table, DataType, HasMany, ForeignKey, BelongsTo } from "sequelize-typescript";
-import { Blook, Resource } from ".";
+import { Blook, Resource } from "./index";
 
 @Table({ tableName: "pack" })
-export default class Pack extends Model<Pack> {
+export class Pack extends Model<Pack> {
     @Column({ type: DataType.INTEGER, primaryKey: true, autoIncrement: true })
     declare id: number;
 
@@ -41,8 +41,4 @@ export default class Pack extends Model<Pack> {
 
     @HasMany(() => Blook)
     blooks?: Blook[];
-
-    get imagePath(): string {
-        return this.image.path;
-    }
 }

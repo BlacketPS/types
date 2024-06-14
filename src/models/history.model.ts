@@ -1,14 +1,10 @@
 import { Column, Model, Table, DataType, ForeignKey, BelongsTo } from "sequelize-typescript";
-import { User } from ".";
+import { User } from "./index";
 
-export enum HistoryType {
-    UNKNOWN = 1,
-    TRADE = 2,
-    AUCTION = 3
-}
+import { HistoryType } from "./enum";
 
 @Table({ tableName: "history" })
-export default class History extends Model<History> {
+export class History extends Model<History> {
     @Column({ type: DataType.INTEGER, primaryKey: true, autoIncrement: true })
     declare id: number;
 

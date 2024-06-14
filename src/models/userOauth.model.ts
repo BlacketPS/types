@@ -1,12 +1,12 @@
 import { Column, Model, Table, DataType, BelongsTo, ForeignKey } from "sequelize-typescript";
-import { User } from ".";
+import { User } from "./index";
 
 export enum OAuthType {
     DISCORD = 1
 }
 
 @Table({ tableName: "user_oauth", timestamps: false })
-export default class UserOauth extends Model<UserOauth> {
+export class UserOauth extends Model<UserOauth> {
     @Column({ type: DataType.INTEGER, primaryKey: true, autoIncrement: true })
     declare id: number;
 

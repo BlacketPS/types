@@ -1,15 +1,10 @@
 import { Column, Model, Table, DataType, BelongsTo, ForeignKey } from "sequelize-typescript";
-import { User } from ".";
+import { User } from "./index";
 
-export enum PunishmentType {
-    WARN = 1,
-    MUTE = 2,
-    BAN = 3,
-    BLACKLIST = 4
-}
+import { PunishmentType } from "./enum";
 
 @Table({ tableName: "user_punishment", timestamps: false })
-export default class UserPunishment extends Model<UserPunishment> {
+export class UserPunishment extends Model<UserPunishment> {
     @Column({ type: DataType.INTEGER, primaryKey: true, autoIncrement: true })
     declare id: number;
 

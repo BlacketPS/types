@@ -1,14 +1,10 @@
 import { Column, Model, Table, DataType, ForeignKey, BelongsTo } from "sequelize-typescript";
-import { User } from ".";
+import { User } from "./index";
 
-export enum FriendRequestSetting {
-    ON = 1,
-    OFF = 2,
-    MUTUAL = 3
-}
+import { SettingFriendRequest } from "./enum";
 
 @Table({ tableName: "user_setting", timestamps: false })
-export default class UserSetting extends Model<UserSetting> {
+export class UserSetting extends Model<UserSetting> {
     @ForeignKey(() => User)
     @Column({ type: DataType.STRING, allowNull: false, primaryKey: true })
     declare id: string;
@@ -21,11 +17,11 @@ export default class UserSetting extends Model<UserSetting> {
 
     @Column({
         type: DataType.INTEGER,
-        validate: { isIn: { args: [Object.values(FriendRequestSetting)], msg: `friendRequests must be one of these values: ${Object.keys(FriendRequestSetting).join(", ")}` } },
-        defaultValue: FriendRequestSetting.ON,
+        validate: { isIn: { args: [Object.values(SettingFriendRequest)], msg: `friendRequests must be one of these values: ${Object.keys(SettingFriendRequest).join(", ")}` } },
+        defaultValue: SettingFriendRequest.ON,
         allowNull: false
     })
-    friendRequests: FriendRequestSetting;
+    friendRequests: SettingFriendRequest;
 
     @Column({ type: DataType.JSON, allowNull: false, defaultValue: [] })
     categoriesClosed: string[];

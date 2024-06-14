@@ -1,8 +1,8 @@
 import { Column, Model, Table, DataType, HasMany } from "sequelize-typescript";
-import { Blook, Pack, Group, Banner, Emoji, Font, User, Item } from ".";
+import { Blook, Pack, Group, Banner, Emoji, Font, User, Item } from "./index";
 
 @Table({ tableName: "resource" })
-export default class Resource extends Model<Resource> {
+export class Resource extends Model<Resource> {
     @Column({ type: DataType.INTEGER, primaryKey: true, autoIncrement: true })
     declare id: number;
 

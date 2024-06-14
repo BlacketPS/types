@@ -1,9 +1,8 @@
 import { Column, Model, Table, DataType, HasOne, HasMany, ForeignKey, BelongsTo } from "sequelize-typescript";
-import { History, Resource, Session, UserBlook, UserGroup, UserPunishment, UserRelationship, UserSetting, UserStatistic, UserIpAddress, Auction, Title, UserTitle, UserBanner, Font, Message, Form } from ".";
-import UserOauth from "./userOauth.model";
+import { History, Resource, Session, UserBlook, UserGroup, UserPunishment, UserRelationship, UserSetting, UserStatistic, UserIpAddress, Title, UserTitle, UserBanner, Font, Message, Form, UserOauth, UserDiscord, Auction } from "./index";
 
 @Table({ tableName: "user" })
-export default class User extends Model<User> {
+export class User extends Model<User> {
     @Column({
         type: DataType.STRING,
         primaryKey: true,
@@ -93,6 +92,9 @@ export default class User extends Model<User> {
     @HasOne(() => UserSetting)
     settings: UserSetting;
 
+    @HasOne(() => UserDiscord)
+    discord?: UserDiscord;
+
     @HasMany(() => UserGroup)
     groups?: UserGroup[];
 
@@ -140,20 +142,4 @@ export default class User extends Model<User> {
 
     @HasMany(() => UserIpAddress)
     ipAddresses?: UserIpAddress[];
-
-    get avatarPath(): string {
-        return this.avatar.path;
-    }
-
-    get customAvatarPath(): string {
-        return this.customAvatar?.path;
-    }
-
-    get bannerPath(): string {
-        return this.banner.path;
-    }
-
-    get customBannerPath(): string {
-        return this.customBanner?.path;
-    }
 }

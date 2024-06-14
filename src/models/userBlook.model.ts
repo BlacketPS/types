@@ -1,14 +1,10 @@
 import { Column, Model, Table, DataType, ForeignKey, BelongsTo } from "sequelize-typescript";
-import { User, Blook } from ".";
+import { User, Blook } from "./index";
 
-export enum BlookObtainMethod {
-    UNKNOWN = 1,
-    PACK_OPEN = 2,
-    STAFF = 3
-}
+import { BlookObtainMethod } from "./enum";
 
 @Table({ tableName: "user_blook" })
-export default class UserBlook extends Model<UserBlook> {
+export class UserBlook extends Model<UserBlook> {
     @Column({ type: DataType.INTEGER, primaryKey: true, autoIncrement: true })
     declare id: number;
 

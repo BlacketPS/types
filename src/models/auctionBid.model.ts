@@ -1,8 +1,8 @@
 import { Column, Model, Table, DataType, BelongsTo, ForeignKey } from "sequelize-typescript";
-import { Auction, User } from ".";
+import { Auction, User } from "./index";
 
 @Table({ tableName: "auction_bid" })
-export default class AuctionBid extends Model<AuctionBid> {
+export class AuctionBid extends Model<AuctionBid> {
     @Column({ type: DataType.INTEGER, primaryKey: true, autoIncrement: true })
     declare id: number;
 

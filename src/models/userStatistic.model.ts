@@ -1,8 +1,8 @@
 import { Column, Model, Table, DataType, ForeignKey, BelongsTo } from "sequelize-typescript";
-import { User } from ".";
+import { User } from "./index";
 
 @Table({ tableName: "user_statistic", timestamps: false })
-export default class UserStatistic extends Model<UserStatistic> {
+export class UserStatistic extends Model<UserStatistic> {
     @ForeignKey(() => User)
     @Column({ type: DataType.STRING, allowNull: false, primaryKey: true })
     declare id: string;

@@ -1,13 +1,10 @@
 import { Column, Model, Table, DataType, BelongsTo, ForeignKey, HasMany } from "sequelize-typescript";
-import { Item, Blook, User, AuctionBid } from ".";
+import { Item, Blook, User, AuctionBid } from "./index";
 
-export enum AuctionType {
-    ITEM = 1,
-    BLOOK = 2
-}
+import { AuctionType } from "./enum";
 
 @Table({ tableName: "auction" })
-export default class Auction extends Model<Auction> {
+export class Auction extends Model<Auction> {
     @Column({ type: DataType.INTEGER, primaryKey: true, autoIncrement: true })
     declare id: number;
 

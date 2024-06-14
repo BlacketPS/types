@@ -1,8 +1,8 @@
 import { Column, Model, Table, DataType, ForeignKey, BelongsTo } from "sequelize-typescript";
-import { Group, User } from ".";
+import { Group, User } from "./index";
 
 @Table({ tableName: "user_group" })
-export default class UserGroup extends Model<UserGroup> {
+export class UserGroup extends Model<UserGroup> {
     @Column({ type: DataType.INTEGER, primaryKey: true, autoIncrement: true })
     declare id: number;
 

@@ -1,8 +1,8 @@
 import { Column, Model, Table, DataType, HasMany } from "sequelize-typescript";
-import { UserIpAddress } from ".";
+import { UserIpAddress } from "./index";
 
 @Table({ tableName: "ip_address" })
-export default class IpAddress extends Model<IpAddress> {
+export class IpAddress extends Model<IpAddress> {
     @Column({ type: DataType.INTEGER, primaryKey: true, autoIncrement: true })
     id: number;
 

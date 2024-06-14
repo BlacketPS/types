@@ -1,8 +1,8 @@
 import { Column, Model, Table, DataType, BelongsTo, ForeignKey } from "sequelize-typescript";
-import { Resource } from ".";
+import { Resource } from "./index";
 
 @Table({ tableName: "emoji" })
-export default class Emoji extends Model<Emoji> {
+export class Emoji extends Model<Emoji> {
     @Column({ type: DataType.INTEGER, primaryKey: true, autoIncrement: true })
     declare id: number;
 
@@ -18,8 +18,4 @@ export default class Emoji extends Model<Emoji> {
 
     @Column({ type: DataType.INTEGER, allowNull: false, defaultValue: 0 })
     priority: number;
-
-    get imagePath(): string {
-        return this.image.path;
-    }
 }

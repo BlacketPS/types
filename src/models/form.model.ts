@@ -1,17 +1,12 @@
 import { Column, Model, Table, DataType, ForeignKey, BelongsTo } from "sequelize-typescript";
-import { User } from ".";
+import { User } from "./index";
 
 import { randomUUID } from "node:crypto";
 
-// TODO: separate enums like this into an enum folder on models
-export enum FormStatus {
-    PENDING = 1,
-    ACCEPTED = 2,
-    DENIED = 3
-};
+import { FormStatus } from "./enum";
 
 @Table({ tableName: "form" })
-export default class Form extends Model<Form> {
+export class Form extends Model<Form> {
     @Column({ type: DataType.STRING, primaryKey: true, defaultValue: () => randomUUID() })
     declare id: string;
 

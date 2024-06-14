@@ -1,8 +1,8 @@
 import { Column, Model, Table, DataType, BelongsTo, ForeignKey, HasMany } from "sequelize-typescript";
-import { Rarity, Resource, Pack, Auction } from ".";
+import { Rarity, Resource, Pack, Auction } from "./index";
 
 @Table({ tableName: "blook" })
-export default class Blook extends Model<Blook> {
+export class Blook extends Model<Blook> {
     @Column({ type: DataType.INTEGER, primaryKey: true, autoIncrement: true })
     declare id: number;
 
@@ -48,12 +48,4 @@ export default class Blook extends Model<Blook> {
 
     @HasMany(() => Auction)
     auctions?: Auction[];
-
-    get imagePath(): string {
-        return this.image.path;
-    }
-
-    get backgroundPath(): string {
-        return this.background.path;
-    }
 }
