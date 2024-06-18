@@ -28,7 +28,7 @@ export class User extends Model<User> {
     customAvatarId: number;
 
     @BelongsTo(() => Resource, "customAvatarId")
-    customAvatar?: Resource;
+    customAvatar?: Resource | string;
 
     @ForeignKey(() => Resource)
     @Column({ type: DataType.INTEGER, allowNull: false })
@@ -42,7 +42,7 @@ export class User extends Model<User> {
     customBannerId: number;
 
     @BelongsTo(() => Resource, "customBannerId")
-    customBanner?: Resource;
+    customBanner?: Resource | string;
 
     @ForeignKey(() => Title)
     @Column({ type: DataType.INTEGER, allowNull: false })
