@@ -3,10 +3,13 @@
 
 name: Node.js Package
 
+# on:
+#   push:
+#     branches: [ "master" ]
+#     paths: [ "src/**", ".github/workflows/npm-publish.yml", "package.json", "tsconfig.json" ]
 on:
-  push:
-    branches: [ "master" ]
-    paths: [ "src/**", ".github/workflows/npm-publish.yml", "package.json", "tsconfig.json" ]
+    release:
+        types: [created]
 
 jobs:
   build:
