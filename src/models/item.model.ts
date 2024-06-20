@@ -46,7 +46,10 @@ export class Item extends Model<Item> {
     canTrade: boolean;
 
     @Column({ type: DataType.INTEGER, allowNull: true, defaultValue: 0 })
-    boosterDuration: number;
+    boosterDuration?: number;
+
+    @Column({ type: DataType.INTEGER, allowNull: false, defaultValue: 0 })
+    priority: number;
 
     @HasMany(() => Auction)
     auctions?: Auction[];
