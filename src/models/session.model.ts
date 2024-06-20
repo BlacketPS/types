@@ -1,7 +1,9 @@
 import { Column, Model, Table, DataType, ForeignKey, BelongsTo } from "sequelize-typescript";
 import { User } from "./index";
-
-import { randomUUID } from "node:crypto";
+let randomUUID: () => string;
+try {
+    randomUUID = require("node:crypto").randomUUID;
+} catch (e) { }
 
 @Table({ tableName: "sessions", timestamps: false })
 export class Session extends Model<Session> {
