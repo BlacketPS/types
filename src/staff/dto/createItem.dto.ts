@@ -28,6 +28,9 @@ export class StaffAdminCreateItemDto {
     @IsNotEmpty()
     readonly canTrade: boolean;
 
+    @IsNotEmpty()
+    readonly maxUses: number;
+
     @IsOptional()
     readonly boosterDuration?: number;
 }

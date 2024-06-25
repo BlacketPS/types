@@ -24,6 +24,7 @@ export * from "./userBanner.model";
 export * from "./userBlook.model";
 export * from "./userGroup.model";
 export * from "./userIpAddress.model";
+export * from "./userItem.model";
 export * from "./userPunishment.model";
 export * from "./userRelationship.model";
 export * from "./userSetting.model";

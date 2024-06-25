@@ -1,5 +1,5 @@
 import { Column, Model, Table, DataType, BelongsTo, ForeignKey, HasMany } from "sequelize-typescript";
-import { Rarity, Resource, Auction } from "./index";
+import { Rarity, Resource, Auction, UserItem } from "./index";
 
 import { ItemType } from "./enum";
 
@@ -45,11 +45,17 @@ export class Item extends Model<Item> {
     @Column({ type: DataType.BOOLEAN, allowNull: false, defaultValue: false })
     canTrade: boolean;
 
+    @Column({ type: DataType.INTEGER, allowNull: false, defaultValue: 1 })
+    maxUses: number;
+
     @Column({ type: DataType.INTEGER, allowNull: true, defaultValue: 0 })
     boosterDuration?: number;
 
     @Column({ type: DataType.INTEGER, allowNull: false, defaultValue: 0 })
     priority: number;
+
+    @HasMany(() => UserItem)
+    userItems?: UserItem[];
 
     @HasMany(() => Auction)
     auctions?: Auction[];

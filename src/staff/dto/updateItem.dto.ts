@@ -29,6 +29,9 @@ export class StaffAdminUpdateItemDto {
     readonly canTrade?: boolean;
 
     @IsOptional()
+    readonly maxUses?: number;
+
+    @IsOptional()
     readonly boosterDuration?: number;
 }
 

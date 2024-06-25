@@ -12,4 +12,4 @@ export interface IDiscordUser {
     premium_type?: number;
     public_flags?: number;
     avatar_decoration?: string;
-}
+};

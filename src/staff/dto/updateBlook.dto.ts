@@ -22,6 +22,9 @@ export class StaffAdminUpdateBlookDto {
 
     @IsOptional()
     readonly packId?: number | null;
+
+    @IsOptional()
+    readonly onlyOnDay?: number | null;
 }
 
 export default StaffAdminUpdateBlookDto;

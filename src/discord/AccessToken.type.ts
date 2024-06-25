@@ -4,4 +4,4 @@ export interface IAccessToken {
     expires_in: number;
     refresh_token: string;
     scope: string;
-}
+};

@@ -1,5 +1,7 @@
 import { Column, Model, Table, DataType, BelongsTo, ForeignKey, HasMany } from "sequelize-typescript";
-import { Rarity, Resource, Pack, Auction } from "./index";
+import { Rarity, Resource, Pack, Auction, UserBlook } from "./index";
+
+import { DayType } from "./enum";
 
 @Table({ tableName: "blook" })
 export class Blook extends Model<Blook> {
@@ -43,8 +45,19 @@ export class Blook extends Model<Blook> {
     @BelongsTo(() => Pack)
     pack?: Pack;
 
+    @Column({
+        type: DataType.INTEGER,
+        allowNull: true,
+        validate: { isIn: { args: [Object.values(DayType)], msg: `onlyOnDay must be one of: ${Object.values(DayType).join(", ")}` } },
+        defaultValue: null
+    })
+    onlyOnDay?: DayType;
+
     @Column({ type: DataType.INTEGER, allowNull: false, defaultValue: 0 })
     priority: number;
+
+    @HasMany(() => UserBlook)
+    userBlooks?: UserBlook[];
 
     @HasMany(() => Auction)
     auctions?: Auction[];
