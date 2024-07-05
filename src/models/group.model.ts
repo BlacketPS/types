@@ -23,7 +23,7 @@ export class Group extends Model<Group> {
     image: Resource;
 
     @HasMany(() => UserGroup)
-    userGroups?: UserGroup[];
+    userGroups: UserGroup[];
 
     @Column({ type: DataType.INTEGER, allowNull: false, defaultValue: 0 })
     priority: number;
