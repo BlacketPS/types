@@ -1,5 +1,5 @@
 import { Column, Model, Table, DataType, HasOne, HasMany, ForeignKey, BelongsTo } from "sequelize-typescript";
-import { History, Resource, Session, UserBlook, UserGroup, UserPunishment, UserRelationship, UserSetting, UserStatistic, UserIpAddress, Title, UserTitle, UserBanner, Font, Message, Form, UserOauth, UserDiscord, Auction, UserItem } from "./index";
+import { History, Resource, Session, UserBlook, UserGroup, UserPunishment, UserRelationship, UserSetting, UserStatistic, UserIpAddress, Title, UserTitle, UserBanner, Font, Message, Form, UserOauth, UserDiscord, Auction, UserItem, UserPermission } from "./index";
 
 @Table({ tableName: "user" })
 export class User extends Model<User> {
@@ -74,9 +74,6 @@ export class User extends Model<User> {
     @Column({ type: DataType.INTEGER, allowNull: false, defaultValue: 0 })
     experience: number;
 
-    @Column({ type: DataType.BIGINT, allowNull: false, defaultValue: 0 })
-    permissions: number;
-
     @Column({ type: DataType.DATE, allowNull: true, defaultValue: null })
     lastClaimed: Date;
 
@@ -94,6 +91,9 @@ export class User extends Model<User> {
 
     @HasOne(() => UserDiscord)
     discord?: UserDiscord;
+
+    @HasMany(() => UserPermission)
+    permissions?: UserPermission[];
 
     @HasMany(() => UserGroup)
     groups?: UserGroup[];

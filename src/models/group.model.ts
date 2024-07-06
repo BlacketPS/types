@@ -1,5 +1,5 @@
 import { Column, Model, Table, DataType, ForeignKey, BelongsTo, HasMany } from "sequelize-typescript";
-import { Resource, UserGroup } from "./index";
+import { Resource, GroupPermission, UserGroup } from "./index";
 
 @Table({ tableName: "group", timestamps: false })
 export class Group extends Model<Group> {
@@ -12,15 +12,15 @@ export class Group extends Model<Group> {
     @Column({ type: DataType.STRING, allowNull: false })
     description: string;
 
-    @Column({ type: DataType.BIGINT, allowNull: false, defaultValue: 0 })
-    permissions: number;
-
     @ForeignKey(() => Resource)
     @Column({ type: DataType.INTEGER })
     imageId: number;
 
     @BelongsTo(() => Resource, "imageId")
     image: Resource;
+
+    @HasMany(() => GroupPermission)
+    permissions: GroupPermission[];
 
     @HasMany(() => UserGroup)
     userGroups: UserGroup[];

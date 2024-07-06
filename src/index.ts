@@ -3,7 +3,6 @@ export * from "./game";
 export * from "./market";
 export * from "./auth";
 export * from "./exception";
-export * from "./permissions";
 export * from "./leaderboard";
 export * from "./forms";
 export * from "./models";

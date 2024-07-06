@@ -1,5 +1,5 @@
 import { Exclude } from "class-transformer";
-import { Resource, UserBlook, UserItem } from "../../models";
+import { Permission, Resource, UserBlook, UserItem } from "../../models";
 import { UserBlookObject, UserSettings } from "./interface";
 
 export class PrivateUser {
@@ -23,7 +23,7 @@ export class PrivateUser {
     tokens: number;
     experience: number;
 
-    permissions: number;
+    permissions: number[] | Permission[];
 
     lastClaimed: Date;
 
@@ -46,6 +46,8 @@ export class PrivateUser {
 
         this.customAvatar = (this.customAvatar as Resource)?.path ?? null;
         this.customBanner = (this.customBanner as Resource)?.path ?? null;
+
+        this.permissions = this.permissions.map((permission) => permission.permissionId).flat() ?? [];
 
         if (this.blooks) this.blooks = (this.blooks as unknown as UserBlook[]).flatMap((blook) => blook.blookId).reduce((acc, curr) => {
             const key = String(curr);

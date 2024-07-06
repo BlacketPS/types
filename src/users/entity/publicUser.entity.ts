@@ -4,7 +4,7 @@ import { UserSettings } from "./interface";
 
 export class PublicUser extends PrivateUser {
     @Exclude()
-    permissions: number;
+    permissions: number[];
 
     @Exclude()
     settings: UserSettings;
