@@ -1,1 +1,1 @@
-export * from "./OpenPackDto";
+export * from "./openPack.dto";

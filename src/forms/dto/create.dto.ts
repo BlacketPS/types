@@ -1,6 +1,6 @@
 import { IsNotEmpty, Validate } from "class-validator";
 
-export class CreateDto {
+export class FormsCreateDto {
     @IsNotEmpty()
     @Validate((value: string) => value.length > 0)
     readonly username: string;
@@ -14,4 +14,4 @@ export class CreateDto {
     readonly reasonToPlay: string;
 }
 
-export default CreateDto;
+export default FormsCreateDto;

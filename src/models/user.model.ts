@@ -68,7 +68,7 @@ export class User extends Model<User> {
     })
     color: string;
 
-    @Column({ type: DataType.INTEGER, allowNull: false, defaultValue: 0 })
+    @Column({ type: DataType.DOUBLE, allowNull: false, defaultValue: 0 })
     tokens: number;
 
     @Column({ type: DataType.INTEGER, allowNull: false, defaultValue: 0 })

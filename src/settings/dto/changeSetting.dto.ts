@@ -1,6 +1,6 @@
 import { IsNotEmpty } from "class-validator";
 
-export class ChangeSettingDto {
+export class SettingsChangeSettingDto {
     @IsNotEmpty()
     readonly key: string;
 
@@ -8,4 +8,4 @@ export class ChangeSettingDto {
     readonly value: any;
 }
 
-export default ChangeSettingDto;
+export default SettingsChangeSettingDto;

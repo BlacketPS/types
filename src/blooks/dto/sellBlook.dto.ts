@@ -1,7 +1,7 @@
 import { IsInt, IsNotEmpty, IsNumber, Min } from "class-validator";
 import { Blook } from "src/models";
 
-export class SellBlookDto {
+export class BlooksSellBlookDto {
     @IsNotEmpty()
     @IsNumber()
     readonly blookId: Blook["id"];
@@ -12,4 +12,4 @@ export class SellBlookDto {
     readonly quantity: number;
 }
 
-export default SellBlookDto;
+export default BlooksSellBlookDto;

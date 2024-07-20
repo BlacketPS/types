@@ -1,9 +1,9 @@
 import { IsNotEmpty, IsNumber } from "class-validator";
 
-export class OpenPackDto {
+export class MarketOpenPackDto {
     @IsNotEmpty()
 	@IsNumber()
     readonly packId: number;
 }
 
-export default OpenPackDto;
+export default MarketOpenPackDto;

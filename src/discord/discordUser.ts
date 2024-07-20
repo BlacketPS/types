@@ -1,4 +1,4 @@
-export interface IDiscordUser {
+export interface DiscordDiscordUser {
     id: string;
     username: string;
     discriminator: string;

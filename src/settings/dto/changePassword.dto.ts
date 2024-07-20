@@ -1,6 +1,6 @@
 import { IsNotEmpty, Validate } from "class-validator";
 
-export class ChangePasswordDto {
+export class SettingsChangePasswordDto {
     @IsNotEmpty()
     @Validate((value: string) => value.length > 0)
     readonly oldPassword: string;
@@ -10,4 +10,4 @@ export class ChangePasswordDto {
     readonly newPassword: string;
 }
 
-export default ChangePasswordDto;
+export default SettingsChangePasswordDto;

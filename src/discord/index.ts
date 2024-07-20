@@ -1,3 +1,3 @@
-export * from "./AccessToken.type";
-export * from "./DiscordUser.type";
+export * from "./accessToken";
+export * from "./discordUser";
 export * from "./dto";

@@ -1,6 +1,6 @@
 import { Exclude } from "class-transformer";
 
-export class GetFormEntity {
+export class FormsGetFormEntity {
     id: string;
 
     @Exclude()
@@ -12,7 +12,7 @@ export class GetFormEntity {
     @Exclude()
     accepterId: string;
 
-    constructor(partial: Partial<GetFormEntity>) {
+    constructor(partial: Partial<FormsGetFormEntity>) {
         Object.assign(this, partial);
     }
 }

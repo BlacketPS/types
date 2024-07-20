@@ -1,6 +1,6 @@
 import { IsNotEmpty, IsOptional, IsNumber, MaxLength, IsString } from "class-validator";
 
-export class CreateMessageDto {
+export class ChatCreateMessageDto {
     @IsNotEmpty()
     @IsString()
     @MaxLength(2048)
@@ -11,4 +11,4 @@ export class CreateMessageDto {
     readonly replyingTo?: number;
 }
 
-export default CreateMessageDto;
+export default ChatCreateMessageDto;
