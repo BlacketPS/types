@@ -7,6 +7,7 @@ export * from "./leaderboard";
 export * from "./forms";
 export * from "./models";
 export * from "./settings";
+export * from "./socket";
 export * from "./blooks";
 export * from "./chat";
 export * from "./discord";

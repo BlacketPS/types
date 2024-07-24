@@ -4,6 +4,7 @@ export * from "./DayType";
 export * from "./FormStatus";
 export * from "./HistoryType";
 export * from "./ItemObtainMethod";
+export * from "./ItemShopItemType";
 export * from "./ItemType";
 export * from "./PunishmentType";
 export * from "./RarityAnimationType";

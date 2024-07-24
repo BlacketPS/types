@@ -12,6 +12,7 @@ export * from "./groupPermission.model";
 export * from "./history.model";
 export * from "./ipAddress.model";
 export * from "./item.model";
+export * from "./itemShop.model";
 export * from "./message.model";
 export * from "./pack.model";
 export * from "./permission.model";

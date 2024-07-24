@@ -1,5 +1,5 @@
 import { Exclude } from "class-transformer";
-import { Permission, Resource, UserBlook, UserItem } from "../../models";
+import { Permission, Resource, UserBlook, UserItem, UserStatistic } from "../../models";
 import { UserBlookObject, UserSettings } from "./interface";
 
 export class PrivateUser {
@@ -34,6 +34,8 @@ export class PrivateUser {
     items: UserItem[] = [];
 
     settings: UserSettings;
+
+    statistics: UserStatistic;
 
     @Exclude()
     ipAddress: string;
