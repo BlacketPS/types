@@ -1,5 +1,5 @@
 import { Exclude } from "class-transformer";
-import { Permission, Resource, UserBlook, UserItem, UserStatistic } from "../../models";
+import { Resource, UserBlook, UserItem, UserStatistic, UserDiscord, UserPermission, UserPaymentMethod } from "../../models";
 import { UserBlookObject, UserSettings } from "./interface";
 
 export class PrivateUser {
@@ -23,7 +23,7 @@ export class PrivateUser {
     tokens: number;
     experience: number;
 
-    permissions: number[] | Permission[];
+    permissions: number[] | UserPermission[];
 
     lastClaimed: Date;
 
@@ -35,7 +35,11 @@ export class PrivateUser {
 
     settings: UserSettings;
 
+    paymentMethods: UserPaymentMethod[];
+
     statistics: UserStatistic;
+
+    discord?: UserDiscord;
 
     @Exclude()
     ipAddress: string;
@@ -49,7 +53,7 @@ export class PrivateUser {
         this.customAvatar = (this.customAvatar as Resource)?.path ?? null;
         this.customBanner = (this.customBanner as Resource)?.path ?? null;
 
-        this.permissions = this.permissions.map((permission) => permission.permissionId).flat() ?? [];
+        this.permissions = (this.permissions as unknown as UserPermission[]).map((permission) => permission.permissionId) ?? [];
 
         if (this.blooks) this.blooks = (this.blooks as unknown as UserBlook[]).flatMap((blook) => blook.blookId).reduce((acc, curr) => {
             const key = String(curr);

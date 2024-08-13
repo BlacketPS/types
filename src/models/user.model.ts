@@ -1,5 +1,7 @@
 import { Column, Model, Table, DataType, HasOne, HasMany, ForeignKey, BelongsTo } from "sequelize-typescript";
-import { History, Resource, Session, UserBlook, UserGroup, UserPunishment, UserRelationship, UserSetting, UserStatistic, UserIpAddress, Title, UserTitle, UserBanner, Font, Message, Form, UserOauth, UserDiscord, Auction, UserItem, UserPermission } from "./index";
+import { History, Resource, Session, UserBlook, UserGroup, UserPunishment, UserRelationship, UserSetting, UserStatistic, UserIpAddress, Title, UserTitle, UserBanner, Font, Message, Form, UserOauth, UserDiscord, Auction, UserItem, UserPermission, UserGuildRequest, UserPaymentMethod } from "./index";
+import { UserGuild } from "./userGuild.model";
+import { Audit } from "./audit.model";
 
 @Table({ tableName: "user" })
 export class User extends Model<User> {
@@ -63,7 +65,7 @@ export class User extends Model<User> {
         allowNull: false,
         defaultValue: "#ffffff",
         validate: {
-            is: /^#(?:[0-9a-fA-F]{3}|[0-9a-fA-F]{6})$|^rainbow$/
+            is: /^#[0-9a-fA-F]{6}$|^(\d{1,3}\|((#[0-9a-fA-F]{6})@(\d{1,3}))((,(#[0-9a-fA-F]{6})(@(\d{1,3}))?){1,9}))$|^rainbow$/
         }
     })
     color: string;
@@ -97,6 +99,12 @@ export class User extends Model<User> {
 
     @HasMany(() => UserGroup)
     groups?: UserGroup[];
+
+    @HasOne(() => UserGuild)
+    guild?: UserGuild;
+
+    @HasMany(() => UserGuildRequest)
+    guildRequests?: UserGuildRequest[];
 
     @HasMany(() => UserOauth)
     oauth?: UserOauth[];
@@ -142,6 +150,15 @@ export class User extends Model<User> {
 
     @HasMany(() => UserRelationship, "targetId")
     addedByUsers?: UserRelationship[];
+
+    @HasMany(() => UserPaymentMethod, "userId")
+    paymentMethods?: UserPaymentMethod[];
+
+    @HasMany(() => Audit, "userId")
+    audits?: Audit[];
+
+    @HasMany(() => Audit, "secondaryUserId")
+    secondaryAudits?: Audit[];
 
     @HasMany(() => UserIpAddress)
     ipAddresses?: UserIpAddress[];

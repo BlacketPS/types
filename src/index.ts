@@ -12,3 +12,6 @@ export * from "./blooks";
 export * from "./chat";
 export * from "./discord";
 export * from "./staff";
+export * from "./cosmetics";
+export * from "./store";
+export * from "./functions";
