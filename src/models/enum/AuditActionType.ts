@@ -15,7 +15,7 @@ export enum AuditActionType {
 
     // GROUPS
     GROUP_CREATE = 11,
-    GROUP_EDIT = 12,
+    GROUP_UPDATE = 12,
     GROUP_DELETE = 13,
 
     // FORMS    

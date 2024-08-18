@@ -1,4 +1,5 @@
 export * from "./createBlook.dto";
+export * from "./createGroup.dto";
 export * from "./createItem.dto";
 export * from "./createItemShopItem.dto";
 export * from "./createPack.dto";
@@ -6,6 +7,8 @@ export * from "./createRarity.dto";
 export * from "./createResource.dto";
 export * from "./updateBlook.dto";
 export * from "./updateBlookPriorities.dto";
+export * from "./updateGroup.dto";
+export * from "./updateGroupPriorities.dto";
 export * from "./updateItem.dto";
 export * from "./updateItemPriorities.dto";
 export * from "./updateItemShopItem.dto";

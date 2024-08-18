@@ -5,7 +5,7 @@ export enum OAuthType {
     DISCORD = 1
 }
 
-@Table({ tableName: "user_oauth", timestamps: false })
+@Table({ tableName: "user_oauth" })
 export class UserOauth extends Model<UserOauth> {
     @Column({ type: DataType.INTEGER, primaryKey: true, autoIncrement: true })
     declare id: number;

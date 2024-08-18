@@ -1,9 +1,9 @@
-import { Column, Model, Table, DataType, BelongsTo, ForeignKey } from "sequelize-typescript";
-import { User } from "./index";
+import { Column, Model, Table, DataType, BelongsTo, ForeignKey, HasMany } from "sequelize-typescript";
+import { Blacklist, User } from "./index";
 
 import { PunishmentType } from "./enum";
 
-@Table({ tableName: "user_punishment", timestamps: false })
+@Table({ tableName: "user_punishment" })
 export class UserPunishment extends Model<UserPunishment> {
     @Column({ type: DataType.INTEGER, primaryKey: true, autoIncrement: true })
     declare id: number;
@@ -40,4 +40,7 @@ export class UserPunishment extends Model<UserPunishment> {
 
     @Column({ type: DataType.DATE, allowNull: false })
     createdAt: Date;
+
+    @HasMany(() => Blacklist)
+    blacklists?: Blacklist[];
 }

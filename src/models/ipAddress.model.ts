@@ -1,5 +1,5 @@
 import { Column, Model, Table, DataType, HasMany } from "sequelize-typescript";
-import { UserIpAddress } from "./index";
+import { Blacklist, UserIpAddress } from "./index";
 import { Audit } from "./audit.model";
 
 @Table({ tableName: "ip_address" })
@@ -15,4 +15,7 @@ export class IpAddress extends Model<IpAddress> {
 
     @HasMany(() => Audit)
     audits?: Audit[];
+
+    @HasMany(() => Blacklist)
+    blacklists?: Blacklist[];
 }

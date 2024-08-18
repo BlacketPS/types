@@ -1,5 +1,5 @@
 import { Exclude } from "class-transformer";
-import { Resource, UserBlook, UserItem, UserStatistic, UserDiscord, UserPermission, UserPaymentMethod } from "../../models";
+import { Resource, UserBlook, UserItem, UserStatistic, UserDiscord, UserPaymentMethod, UserGroup, Group } from "../../models";
 import { UserBlookObject, UserSettings } from "./interface";
 
 export class PrivateUser {
@@ -8,6 +8,9 @@ export class PrivateUser {
 
     @Exclude()
     password: string;
+
+    @Exclude()
+    groups: UserGroup[];
 
     avatarId: number;
     bannerId: number;
@@ -18,12 +21,14 @@ export class PrivateUser {
     titleId: number;
     fontId: number;
 
+    badges: Group[];
+
     color: string;
 
     tokens: number;
     experience: number;
 
-    permissions: number[] | UserPermission[];
+    permissions: number[];
 
     lastClaimed: Date;
 
@@ -53,7 +58,9 @@ export class PrivateUser {
         this.customAvatar = (this.customAvatar as Resource)?.path ?? null;
         this.customBanner = (this.customBanner as Resource)?.path ?? null;
 
-        this.permissions = (this.permissions as unknown as UserPermission[]).map((permission) => permission.permissionId) ?? [];
+        this.badges = this.groups.reduce((acc, group) => [...acc, { ...group.group, permissions: undefined, deletedAt: undefined }], []).filter((badge) => badge.imageId !== null);
+
+        this.permissions = [...new Set([...this.permissions, ...this.groups.reduce((acc, group) => [...acc, ...group.group.permissions], [])])];
 
         if (this.blooks) this.blooks = (this.blooks as unknown as UserBlook[]).flatMap((blook) => blook.blookId).reduce((acc, curr) => {
             const key = String(curr);
@@ -61,6 +68,7 @@ export class PrivateUser {
             return { ...acc, [key]: acc[key] ? ++acc[key] : 1 };
         }, {});
 
+        if (this.groups) this.groups = undefined;
         if (this.settings) this.settings.otpEnabled = this.settings.otpSecret ? true : false;
         if (this.settings) this.settings.otpSecret = undefined;
     }

@@ -1,5 +1,5 @@
 import { Column, Model, Table, DataType, HasOne, HasMany, ForeignKey, BelongsTo } from "sequelize-typescript";
-import { History, Resource, Session, UserBlook, UserGroup, UserPunishment, UserRelationship, UserSetting, UserStatistic, UserIpAddress, Title, UserTitle, UserBanner, Font, Message, Form, UserOauth, UserDiscord, Auction, UserItem, UserPermission, UserGuildRequest, UserPaymentMethod } from "./index";
+import { History, Resource, Session, UserBlook, UserGroup, UserPunishment, UserRelationship, UserSetting, UserStatistic, UserIpAddress, Title, UserTitle, UserBanner, Font, Message, Form, UserOauth, UserDiscord, Auction, UserItem, UserGuildRequest, UserPaymentMethod, Blacklist } from "./index";
 import { UserGuild } from "./userGuild.model";
 import { Audit } from "./audit.model";
 
@@ -82,6 +82,9 @@ export class User extends Model<User> {
     @Column({ type: DataType.STRING, allowNull: true })
     ipAddress: string;
 
+    @Column({ type: DataType.ARRAY(DataType.INTEGER), allowNull: true, defaultValue: [] })
+    permissions: number[];
+
     @HasOne(() => Session)
     session: Session;
 
@@ -93,9 +96,6 @@ export class User extends Model<User> {
 
     @HasOne(() => UserDiscord)
     discord?: UserDiscord;
-
-    @HasMany(() => UserPermission)
-    permissions?: UserPermission[];
 
     @HasMany(() => UserGroup)
     groups?: UserGroup[];
@@ -162,4 +162,7 @@ export class User extends Model<User> {
 
     @HasMany(() => UserIpAddress)
     ipAddresses?: UserIpAddress[];
+
+    @HasOne(() => Blacklist)
+    blacklist?: Blacklist;
 }

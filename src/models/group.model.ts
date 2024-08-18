@@ -1,8 +1,7 @@
 import { Column, Model, Table, DataType, ForeignKey, BelongsTo, HasMany } from "sequelize-typescript";
-import { Resource, GroupPermission, UserGroup } from "./index";
-import { Audit } from "./audit.model";
+import { Resource, UserGroup, Audit } from "./index";
 
-@Table({ tableName: "group", timestamps: false, paranoid: true })
+@Table({ tableName: "group", paranoid: true })
 export class Group extends Model<Group> {
     @Column({ type: DataType.INTEGER, primaryKey: true, autoIncrement: true })
     declare id: number;
@@ -10,8 +9,8 @@ export class Group extends Model<Group> {
     @Column({ type: DataType.STRING, unique: true, allowNull: false })
     name: string;
 
-    @Column({ type: DataType.STRING, allowNull: false })
-    description: string;
+    @Column({ type: DataType.STRING, allowNull: true })
+    description?: string;
 
     @ForeignKey(() => Resource)
     @Column({ type: DataType.INTEGER })
@@ -20,8 +19,8 @@ export class Group extends Model<Group> {
     @BelongsTo(() => Resource, "imageId")
     image: Resource;
 
-    @HasMany(() => GroupPermission)
-    permissions: GroupPermission[];
+    @Column({ type: DataType.ARRAY(DataType.INTEGER), allowNull: false, defaultValue: [] })
+    permissions: number[];
 
     @HasMany(() => UserGroup)
     userGroups: UserGroup[];
