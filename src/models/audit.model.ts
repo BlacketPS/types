@@ -57,8 +57,6 @@ export class Audit extends Model<Audit> {
     @BelongsTo(() => Form)
     form: Form;
 
-    
-
     @ForeignKey(() => IpAddress)
     @Column({ type: DataType.INTEGER, allowNull: false })
     ipAddressId: IpAddress;

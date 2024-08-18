@@ -19,7 +19,7 @@ export class Group extends Model<Group> {
     @BelongsTo(() => Resource, "imageId")
     image: Resource;
 
-    @Column({ type: DataType.ARRAY(DataType.INTEGER), allowNull: false, defaultValue: [] })
+    @Column({ type: DataType.JSON, allowNull: false, defaultValue: [] })
     permissions: number[];
 
     @HasMany(() => UserGroup)

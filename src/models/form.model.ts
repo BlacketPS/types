@@ -1,5 +1,5 @@
-import { Column, Model, Table, DataType, ForeignKey, BelongsTo } from "sequelize-typescript";
-import { User } from "./index";
+import { Column, Model, Table, DataType, ForeignKey, BelongsTo, HasMany } from "sequelize-typescript";
+import { Audit, User } from "./index";
 let randomUUID: () => string;
 try {
     randomUUID = require("node:crypto").randomUUID;
@@ -36,4 +36,7 @@ export class Form extends Model<Form> {
 
     @BelongsTo(() => User, "accepterId")
     accepter: User;
+
+    @HasMany(() => Audit)
+    audits?: [];
 }

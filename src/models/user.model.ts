@@ -82,7 +82,7 @@ export class User extends Model<User> {
     @Column({ type: DataType.STRING, allowNull: true })
     ipAddress: string;
 
-    @Column({ type: DataType.ARRAY(DataType.INTEGER), allowNull: true, defaultValue: [] })
+    @Column({ type: DataType.JSON, allowNull: true, defaultValue: [] })
     permissions: number[];
 
     @HasOne(() => Session)
