@@ -248,13 +248,13 @@ export interface Group {
   id: number;
   name: string;
   description: string | null;
-  imageId: number | null;
   priority: number;
   createdAt: Date;
   updatedAt: Date;
   deletedAt: Date | null;
   permissions: PermissionType[];
-  resource?: Resource | null;
+  imageId: number | null;
+  image?: Resource | null;
   products?: Product[];
   users?: UserGroup[];
 }
