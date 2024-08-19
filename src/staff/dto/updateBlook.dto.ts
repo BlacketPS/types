@@ -1,4 +1,5 @@
 import { IsOptional, Validate } from "class-validator";
+import type { DayType } from "../../interfaces";
 
 export class StaffAdminUpdateBlookDto {
     @Validate((value: string) => value.length > 0)
@@ -24,7 +25,7 @@ export class StaffAdminUpdateBlookDto {
     readonly packId?: number | null;
 
     @IsOptional()
-    readonly onlyOnDay?: number | null;
+    readonly onlyOnDay?: DayType;
 }
 
 export default StaffAdminUpdateBlookDto;

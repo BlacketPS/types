@@ -1,4 +1,5 @@
 import { IsNotEmpty, Length, Matches, Validate } from "class-validator";
+import type { RarityAnimationType } from "../../interfaces";
 
 export class StaffAdminCreateRarityDto {
     @IsNotEmpty()
@@ -12,7 +13,7 @@ export class StaffAdminCreateRarityDto {
     readonly color: string;
 
     @IsNotEmpty()
-    readonly animationType: number;
+    readonly animationType: RarityAnimationType
 
     @IsNotEmpty()
     readonly experience: number;

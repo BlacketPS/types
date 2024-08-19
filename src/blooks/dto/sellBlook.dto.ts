@@ -1,5 +1,5 @@
 import { IsInt, IsNotEmpty, IsNumber, Min } from "class-validator";
-import { Blook } from "src/models";
+import type { Blook } from "../../interfaces";
 
 export class BlooksSellBlookDto {
     @IsNotEmpty()

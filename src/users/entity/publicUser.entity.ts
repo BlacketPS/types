@@ -1,10 +1,11 @@
 import { Exclude } from "class-transformer";
 import { PrivateUser } from "./privateUser.entity";
 import { UserSettings } from "./interface";
+import { PermissionType } from "src/interfaces";
 
 export class PublicUser extends PrivateUser {
     @Exclude()
-    permissions: number[];
+    permissions: PermissionType[];
 
     @Exclude()
     settings: UserSettings;

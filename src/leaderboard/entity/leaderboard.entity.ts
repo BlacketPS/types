@@ -1,4 +1,4 @@
-import { User } from "src/models";
+import type { User } from "../../interfaces";
 
 export class LeaderboardLeaderboardEntity {
     tokens: Array<User>;

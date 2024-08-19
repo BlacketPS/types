@@ -1,4 +1,5 @@
 import { IsArray, IsOptional, Validate } from "class-validator";
+import type { PermissionType } from "../../interfaces";
 
 export class StaffAdminUpdateGroupDto {
     @IsOptional()
@@ -14,7 +15,7 @@ export class StaffAdminUpdateGroupDto {
 
     @IsOptional()
     @IsArray()
-    readonly permissions?: number[];
+    readonly permissions?: PermissionType[];
 }
 
 export default StaffAdminUpdateGroupDto;
