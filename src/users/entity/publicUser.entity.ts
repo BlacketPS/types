@@ -1,7 +1,7 @@
 import { Exclude } from "class-transformer";
 import { PrivateUser } from "./privateUser.entity";
 import { UserSettings } from "./interface";
-import { PermissionType } from "src/interfaces";
+import { PermissionType } from "../../interfaces";
 
 export class PublicUser extends PrivateUser {
     @Exclude()

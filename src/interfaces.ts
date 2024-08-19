@@ -323,18 +323,18 @@ export interface ItemShop {
 }
 
 export interface Message {
-  id: number;
+  id: string;
   roomId: number;
   content: string;
   mentions?: User[];
-  replyingToId: number | null;
+  replyingToId: string | null;
   edited: boolean;
   deleted: boolean;
   createdAt: Date;
   updatedAt: Date;
   authorId: string;
   author?: User;
-  reply?: Message | null;
+  replyingTo?: Message | null;
   replies?: Message[];
   room?: Room;
 }
