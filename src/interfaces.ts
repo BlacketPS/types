@@ -482,14 +482,15 @@ export interface User {
   font?: Font;
   title?: Title;
   banners?: UserBanner[];
-  ininitallyObtainedBlooks?: UserBlook[];
+  initiallyObtainedBlooks?: UserBlook[];
   blooks?: UserBlook[];
-  discord?: UserDiscord[];
+  discordId: string | null;
+  discord?: UserDiscord | null;
   groups?: UserGroup[];
   guild?: UserGuild[];
   guildRequests?: UserGuildRequest[];
   ipAddresses?: UserIpAddress[];
-  ininitallyObtainedItems?: UserItem[];
+  initiallyObtainedItems?: UserItem[];
   items?: UserItem[];
   userOauth?: UserOAuth[];
   paymentMethods?: UserPaymentMethod[];
@@ -527,12 +528,12 @@ export interface UserBlook {
 
 export interface UserDiscord {
   discordId: string;
-  userId: string;
   username: string;
   avatar: string | null;
   createdAt: Date;
   updatedAt: Date;
-  user?: User;
+  userId: string | null;
+  user?: User | null;
 }
 
 export interface UserGroup {
