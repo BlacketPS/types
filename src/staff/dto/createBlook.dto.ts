@@ -1,4 +1,5 @@
 import { IsNotEmpty, IsOptional, Validate } from "class-validator";
+import { DayTypeEnum } from "../../interfaces";
 
 export class StaffAdminCreateBlookDto {
     @IsNotEmpty()
@@ -26,7 +27,7 @@ export class StaffAdminCreateBlookDto {
 
     @IsNotEmpty()
     @IsOptional()
-    readonly onlyOnDay?: number | null;
+    readonly onlyOnDay?: DayTypeEnum | null;
 }
 
 export default StaffAdminCreateBlookDto;
