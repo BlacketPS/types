@@ -35,7 +35,7 @@ export class PrivateUser {
     createdAt: Date;
     updatedAt: Date;
 
-    blooks: UserBlookObject = {};
+    blooks: UserBlook[] | UserBlookObject = {};
     items: UserItem[] = [];
 
     settings: UserSettings;

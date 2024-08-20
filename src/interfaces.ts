@@ -636,7 +636,7 @@ export interface UserSetting {
   id: string;
   openPacksInstantly: boolean;
   friendRequests: SettingFriendRequest;
-  categoriesClosed: number[];
+  categoriesClosed: string[];
   otpSecret: string | null;
   user?: User;
 }
