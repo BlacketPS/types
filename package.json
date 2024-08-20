@@ -1,26 +1,24 @@
 {
-    "name": "blacket-types",
-    "version": "0.0.5",
-    "description": "",
-    "main": "dist/index.js",
-    "types": "dist/index.d.ts",
-    "files": [
-        "/dist"
-    ],
-    "scripts": {
-        "test": "echo \"Error: no test specified\" && exit 1",
-        "build": "tsc",
-        "build:declaration": "tsc --declaration --emitDeclarationOnly"
-    },
-    "keywords": [],
-    "author": "",
-    "license": "ISC",
-    "dependencies": {
-        "@types/sequelize": "^4.28.20",
-        "class-transformer": "^0.5.1",
-        "class-validator": "^0.14.1",
-        "sequelize": "^6.37.3",
-        "sequelize-typescript": "^2.1.6",
-        "typescript": "^5.4.5"
-    }
+  "name": "blacket-types",
+  "version": "0.0.5",
+  "description": "",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "files": [
+    "/dist"
+  ],
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "tsc",
+    "build:declaration": "tsc --declaration --emitDeclarationOnly"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "class-transformer": "^0.5.1",
+    "class-validator": "^0.14.1",
+    "ts-transformer-keys": "^0.4.4",
+    "typescript": "^5.5.4"
+  }
 }

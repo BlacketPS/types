@@ -1,4 +1,5 @@
 import { IsOptional, Length, Matches, Validate } from "class-validator";
+import type { RarityAnimationType } from "../../interfaces";
 
 export class StaffAdminUpdateRarityDto {
     @Validate((value: string) => value.length > 0)
@@ -12,7 +13,7 @@ export class StaffAdminUpdateRarityDto {
     readonly color?: string;
 
     @IsOptional()
-    readonly animationType?: number;
+    readonly animationType?: RarityAnimationType;
 
     @IsOptional()
     readonly experience?: number;

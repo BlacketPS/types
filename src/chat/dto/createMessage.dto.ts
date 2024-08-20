@@ -7,8 +7,8 @@ export class ChatCreateMessageDto {
     readonly content: string;
 
     @IsOptional()
-    @IsNumber()
-    readonly replyingTo?: number;
+    @IsString()
+    readonly replyingTo?: string;
 }
 
 export default ChatCreateMessageDto;

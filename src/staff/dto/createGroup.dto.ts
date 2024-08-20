@@ -1,4 +1,5 @@
 import { IsArray, IsNotEmpty, IsOptional, Validate } from "class-validator";
+import type { PermissionType } from "../../interfaces";
 
 export class StaffAdminCreateGroupDto {
     @IsNotEmpty()
@@ -14,7 +15,7 @@ export class StaffAdminCreateGroupDto {
 
     @IsNotEmpty()
     @IsArray()
-    readonly permissions: number[];
+    readonly permissions: PermissionType[];
 }
 
 export default StaffAdminCreateGroupDto;

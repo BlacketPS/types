@@ -1,5 +1,5 @@
 import { IsOptional } from "class-validator";
-import { ItemShopItemType } from "../../models";
+import type { ItemShopItemType } from "../../interfaces";
 
 export class StaffAdminUpdateItemShopItemDto {
     @IsOptional()

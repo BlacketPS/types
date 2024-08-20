@@ -1,5 +1,5 @@
 import { Exclude } from "class-transformer";
-import { Resource, UserBlook, UserItem, UserStatistic, UserDiscord, UserPaymentMethod, UserGroup, Group } from "../../models";
+import type { Resource, UserBlook, UserItem, UserStatistic, UserDiscord, UserPaymentMethod, UserGroup, Group, PermissionType } from "../../interfaces";
 import { UserBlookObject, UserSettings } from "./interface";
 
 export class PrivateUser {
@@ -28,7 +28,7 @@ export class PrivateUser {
     tokens: number;
     experience: number;
 
-    permissions: number[];
+    permissions: PermissionType[];
 
     lastClaimed: Date;
 
@@ -69,6 +69,7 @@ export class PrivateUser {
         }, {});
 
         if (this.groups) this.groups = undefined;
+
         if (this.settings) this.settings.otpEnabled = this.settings.otpSecret ? true : false;
         if (this.settings) this.settings.otpSecret = undefined;
     }
