@@ -15,3 +15,4 @@ export * from "./cosmetics";
 export * from "./store";
 export * from "./functions";
 export * from "./interfaces";
+export * from "./auctions";

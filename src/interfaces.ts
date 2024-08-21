@@ -156,9 +156,9 @@ export interface Auction {
   createdAt: Date;
   updatedAt: Date;
   blookId: number | null;
-  blook?: Blook | null;
+  blook?: UserBlook | null;
   itemId: number | null;
-  item?: Item | null;
+  item?: UserItem | null;
   sellerId: string;
   seller?: User;
   bids?: AuctionBid[];
@@ -199,7 +199,6 @@ export interface Blook {
   priority: number;
   createdAt: Date;
   updatedAt: Date;
-  auction?: Auction[];
   background?: Resource;
   image?: Resource;
   pack?: Pack | null;
@@ -297,7 +296,6 @@ export interface Item {
   priority: number;
   createdAt: Date;
   updatedAt: Date;
-  auctions?: Auction[];
   resource?: Resource;
   rarity?: Rarity;
   itemShop?: ItemShop[];
@@ -524,6 +522,7 @@ export interface UserBlook {
   blook?: Blook;
   initialObtainer?: User;
   user?: User;
+  auctions?: Auction[];
 }
 
 export interface UserDiscord {
@@ -590,6 +589,7 @@ export interface UserItem {
   initalObtainer?: User;
   item?: Item;
   user?: User;
+  auctions?: Auction[];
 }
 
 export interface UserOAuth {
