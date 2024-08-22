@@ -14,5 +14,9 @@ export class StoreCreatePaymentMethodEntity {
 
     constructor(partial: Partial<StoreCreatePaymentMethodEntity>) {
         Object.assign(this, partial);
+
+        if (partial.userId) this.userId = undefined;
+        if (partial.squareCustomerId) this.squareCustomerId = undefined;
+        if (partial.squarePaymentMethodId) this.squarePaymentMethodId = undefined;
     }
 }

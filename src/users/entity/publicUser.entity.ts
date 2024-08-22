@@ -1,19 +1,23 @@
 import { Exclude } from "class-transformer";
 import { PrivateUser } from "./privateUser.entity";
 import { UserSettings } from "./interface";
-import { PermissionType } from "../../interfaces";
+import { PermissionType, UserPaymentMethod } from "../../interfaces";
 
 export class PublicUser extends PrivateUser {
     @Exclude()
-    permissions: PermissionType[];
+    paymentMethods: UserPaymentMethod[] = undefined;
 
     @Exclude()
-    settings: UserSettings;
+    settings: UserSettings = undefined;
+
+    @Exclude()
+    permissions: PermissionType[] = undefined;
 
     constructor(partial: Partial<PublicUser>) {
         super(partial);
 
-        this.permissions = undefined;
+        this.paymentMethods = undefined;
         this.settings = undefined;
+        this.permissions = undefined;
     }
 }

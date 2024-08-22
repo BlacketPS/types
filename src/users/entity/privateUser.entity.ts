@@ -7,10 +7,19 @@ export class PrivateUser {
     username: string;
 
     @Exclude()
-    password: string;
+    password: string = undefined;
 
     @Exclude()
     groups: UserGroup[];
+
+    @Exclude()
+    customAvatarId: number = undefined;
+
+    @Exclude()
+    customBannerId: number = undefined;
+
+    @Exclude()
+    discordId: string = undefined;
 
     avatarId: number;
     bannerId: number;
@@ -35,7 +44,7 @@ export class PrivateUser {
     createdAt: Date;
     updatedAt: Date;
 
-    blooks: UserBlook[] | UserBlookObject = {};
+    blooks: UserBlook[] | UserBlookObject = [];
     items: UserItem[] = [];
 
     settings: UserSettings;
@@ -47,20 +56,25 @@ export class PrivateUser {
     discord?: UserDiscord;
 
     @Exclude()
-    ipAddress: string;
+    ipAddress: string = undefined;
 
     constructor(partial: Partial<PrivateUser>) {
         Object.assign(this, partial);
 
         this.password = undefined;
         this.ipAddress = undefined;
+        this.customAvatarId = undefined;
+        this.customBannerId = undefined;
+        this.discordId = undefined;
 
         this.customAvatar = (this.customAvatar as Resource)?.path ?? null;
         this.customBanner = (this.customBanner as Resource)?.path ?? null;
 
-        this.badges = this.groups.reduce((acc, group) => [...acc, { ...group.group, permissions: undefined, deletedAt: undefined }], []).filter((badge) => badge.imageId !== null);
-
-        this.permissions = [...new Set([...this.permissions, ...this.groups.reduce((acc, group) => [...acc, ...group.group.permissions], [])])];
+        if (this.groups) this.badges = this.groups.reduce((acc, group) => [...acc, { ...group.group, permissions: undefined, deletedAt: undefined }], []).filter((badge) => badge.imageId !== null);
+        if (this.permissions && this.groups) this.permissions = [...new Set([
+            ...this.permissions,
+            ...this.groups.reduce((acc, group) => [...acc, ...group.group.permissions], [])
+        ])];
 
         if (this.blooks) this.blooks = (this.blooks as unknown as UserBlook[]).flatMap((blook) => blook.blookId).reduce((acc, curr) => {
             const key = String(curr);

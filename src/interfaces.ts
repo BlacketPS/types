@@ -482,7 +482,6 @@ export interface User {
   banners?: UserBanner[];
   initiallyObtainedBlooks?: UserBlook[];
   blooks?: UserBlook[];
-  discordId: string | null;
   discord?: UserDiscord | null;
   groups?: UserGroup[];
   guild?: UserGuild[];
@@ -531,8 +530,8 @@ export interface UserDiscord {
   avatar: string | null;
   createdAt: Date;
   updatedAt: Date;
-  userId: string | null;
-  user?: User | null;
+  userId: string;
+  user?: User;
 }
 
 export interface UserGroup {

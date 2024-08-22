@@ -5,6 +5,7 @@ export enum NotFound {
     UNKNOWN_FORM = "That form does not exist.",
     UNKNOWN_PACK = "That pack does not exist.",
     UNKNOWN_BLOOK = "That blook does not exist.",
+    UNKNOWN_ITEM = "That item does not exist.",
     UNKNOWN_BANNER = "That banner does not exist.",
     UNKNOWN_TITLE = "That title does not exist.",
     UNKNOWN_FONT = "That font does not exist.",
