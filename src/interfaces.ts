@@ -324,7 +324,7 @@ export interface Message {
   id: string;
   roomId: number;
   content: string;
-  mentions?: User[];
+  mentions: string[];
   replyingToId: string | null;
   edited: boolean;
   deleted: boolean;
@@ -416,8 +416,8 @@ export interface Room {
   public: boolean;
   createdAt: Date;
   updatedAt: Date;
-  message?: Message[];
-  roomUser?: RoomUser[];
+  messages?: Message[];
+  users?: RoomUser[];
 }
 
 export interface RoomUser {
@@ -471,7 +471,7 @@ export interface User {
   auctionBid?: AuctionBid[];
   form?: Form[];
   message?: Message[];
-  roomUser?: RoomUser[];
+  rooms?: RoomUser[];
   sessions?: Session[];
   avatar?: Resource;
   banner?: Resource;
@@ -496,7 +496,6 @@ export interface User {
   settings?: UserSetting | null;
   statistics?: UserStatistic | null;
   titles?: UserTitle[];
-  mentions?: Message[];
 }
 
 export interface UserBanner {
