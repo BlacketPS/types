@@ -159,9 +159,11 @@ export interface Auction {
   blook?: UserBlook | null;
   itemId: number | null;
   item?: UserItem | null;
+  bids?: AuctionBid[];
   sellerId: string;
   seller?: User;
-  bids?: AuctionBid[];
+  buyerId: string | null;
+  buyer?: User | null;
 }
 
 export interface AuctionBid {
@@ -467,8 +469,7 @@ export interface User {
   createdAt: Date;
   updatedAt: Date;
   permissions: PermissionType[];
-  auction?: Auction[];
-  auctionBid?: AuctionBid[];
+  bids?: AuctionBid[];
   form?: Form[];
   message?: Message[];
   rooms?: RoomUser[];
@@ -496,6 +497,8 @@ export interface User {
   settings?: UserSetting | null;
   statistics?: UserStatistic | null;
   titles?: UserTitle[];
+  auctions?: Auction[];
+  wonAuctions?: Auction[];
 }
 
 export interface UserBanner {

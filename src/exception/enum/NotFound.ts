@@ -10,6 +10,7 @@ export enum NotFound {
     UNKNOWN_TITLE = "That title does not exist.",
     UNKNOWN_FONT = "That font does not exist.",
     UNKNOWN_ROOM = "That room does not exist.",
+    UNKNOWN_AUCTION = "That auction does not exist.",
     UNKNOWN_SETTING = "Unknown setting.",
     UNKNOWN_PAYMENT_METHOD = "That payment method does not exist."
 };

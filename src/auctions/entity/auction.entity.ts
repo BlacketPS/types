@@ -6,20 +6,22 @@ export class AuctionsAuctionEntity {
     id: number;
 
     @Exclude()
-    sellerId: string;
+    sellerId: string = undefined;
 
     @Exclude()
-    blook: UserBlook;
+    buyerId: string = undefined;
 
     @Exclude()
-    item: UserItem;
+    itemId: number = undefined;
+
+    @Exclude()
+    blook?: UserBlook;
+
+    item?: UserItem;
 
     type: AuctionType;
 
     blookId?: number;
-
-    itemId?: number;
-    itemUsesLeft?: number;
 
     price: number;
 
@@ -34,17 +36,14 @@ export class AuctionsAuctionEntity {
     constructor(partial: Partial<AuctionsAuctionEntity>) {
         Object.assign(this, partial);
 
+        this.itemId = undefined;
         this.sellerId = undefined;
         this.seller = new PublicUser(partial.seller);
+        this.buyerId = undefined;
 
         if (partial.blook) this.blookId = partial.blook.blookId;
-        if (partial.item) {
-            this.itemId = partial.item.itemId;
-            this.itemUsesLeft = partial.item.usesLeft
-        }
 
         this.blook = undefined;
-        this.item = undefined;
     }
 }
 

@@ -7,6 +7,10 @@ export class AuctionsSearchAuctionDto {
     readonly type?: AuctionTypeEnum;
 
     @IsOptional()
+    @IsString()
+    readonly query?: string;
+
+    @IsOptional()
     @IsNumber()
     readonly blookId?: number;
 
