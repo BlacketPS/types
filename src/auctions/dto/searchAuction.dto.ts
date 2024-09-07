@@ -32,7 +32,7 @@ export class AuctionsSearchAuctionDto {
 
     @IsOptional()
     @IsString()
-    readonly sellerId?: string;
+    readonly seller?: string;
 }
 
 export default AuctionsSearchAuctionDto;

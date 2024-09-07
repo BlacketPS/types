@@ -1,5 +1,6 @@
 import { Exclude } from "class-transformer";
-import { AuctionBid, AuctionType, UserBlook, UserItem } from "../../interfaces";
+import { AuctionType, UserBlook, UserItem } from "../../interfaces";
+import { AuctionsBidEntity } from ".";
 import { PublicUser } from "../../users";
 
 export class AuctionsAuctionEntity {
@@ -17,6 +18,9 @@ export class AuctionsAuctionEntity {
     @Exclude()
     blook?: UserBlook;
 
+    @Exclude()
+    delistedAt?: Date;
+
     item?: UserItem;
 
     type: AuctionType;
@@ -29,7 +33,7 @@ export class AuctionsAuctionEntity {
 
     buyItNow: boolean;
 
-    bids: AuctionBid[];
+    bids: AuctionsBidEntity[];
 
     expiresAt: Date;
 
@@ -42,6 +46,7 @@ export class AuctionsAuctionEntity {
         this.buyerId = undefined;
 
         if (partial.blook) this.blookId = partial.blook.blookId;
+        if (partial.bids) this.bids = partial.bids.map((bid) => new AuctionsBidEntity(bid));
 
         this.blook = undefined;
     }

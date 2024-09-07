@@ -90,19 +90,18 @@ export enum PermissionTypeEnum {
   VIEW_AUDIT = "VIEW_AUDIT",
   MANAGE_REPORTS = "MANAGE_REPORTS",
   BLACKLIST_USERS = "BLACKLIST_USERS",
-  MANAGE_USER_PERMISSIONS = "MANAGE_USER_PERMISSIONS",
   MANAGE_USER_BLOOKS = "MANAGE_USER_BLOOKS",
   MANAGE_USER_ITEMS = "MANAGE_USER_ITEMS",
   MANAGE_USER_TITLES = "MANAGE_USER_TITLES",
   MANAGE_USER_BANNERS = "MANAGE_USER_BANNERS",
-  MANAGE_USER_GROUPS = "MANAGE_USER_GROUPS",
   MANAGE_NEWS_POSTS = "MANAGE_NEWS_POSTS",
+  MANAGE_USER_GROUPS = "MANAGE_USER_GROUPS",
   MANAGE_CHAT_ROOMS = "MANAGE_CHAT_ROOMS",
   MANAGE_GAME_DATA = "MANAGE_GAME_DATA",
   DELETE_USERS = "DELETE_USERS",
-  MANAGE_GROUPS = "MANAGE_GROUPS"
+  MANAGE_GAME_GROUPS = "MANAGE_GAME_GROUPS"
 }
-export type PermissionType = "CREATE_REPORTS" | "CHANGE_USERNAME" | "CHANGE_NAME_COLOR_TIER_1" | "CHANGE_NAME_COLOR_TIER_2" | "EARLY_ACCESS_TIER_1" | "EARLY_ACCESS_TIER_2" | "USE_CHAT_COLORS" | "UPLOAD_FILES_SMALL" | "UPLOAD_FILES_MEDIUM" | "UPLOAD_FILES_LARGE" | "CUSTOM_AVATAR" | "CUSTOM_BANNER" | "CHANGE_FONT" | "MORE_AUCTIONS_TIER_1" | "MORE_AUCTIONS_TIER_2" | "MORE_AUCTIONS_TIER_3" | "MORE_AUCTIONS_TIER_4" | "LESS_AUCTION_TAX" | "CREATE_GUILDS" | "CHANGE_GUILD_COLOR" | "CUSTOM_TRADING_TABLE_COLOR" | "MORE_CHAT_BADGE_TIER_1" | "MORE_CHAT_BADGE_TIER_2" | "MUTE_USERS" | "BAN_USERS" | "MANAGE_MESSAGES" | "VIEW_AUDIT" | "MANAGE_REPORTS" | "BLACKLIST_USERS" | "MANAGE_USER_PERMISSIONS" | "MANAGE_USER_BLOOKS" | "MANAGE_USER_ITEMS" | "MANAGE_USER_TITLES" | "MANAGE_USER_BANNERS" | "MANAGE_USER_GROUPS" | "MANAGE_NEWS_POSTS" | "MANAGE_CHAT_ROOMS" | "MANAGE_GAME_DATA" | "DELETE_USERS" | "MANAGE_GROUPS";
+export type PermissionType = "CREATE_REPORTS" | "CHANGE_USERNAME" | "CHANGE_NAME_COLOR_TIER_1" | "CHANGE_NAME_COLOR_TIER_2" | "EARLY_ACCESS_TIER_1" | "EARLY_ACCESS_TIER_2" | "USE_CHAT_COLORS" | "UPLOAD_FILES_SMALL" | "UPLOAD_FILES_MEDIUM" | "UPLOAD_FILES_LARGE" | "CUSTOM_AVATAR" | "CUSTOM_BANNER" | "CHANGE_FONT" | "MORE_AUCTIONS_TIER_1" | "MORE_AUCTIONS_TIER_2" | "MORE_AUCTIONS_TIER_3" | "MORE_AUCTIONS_TIER_4" | "LESS_AUCTION_TAX" | "CREATE_GUILDS" | "CHANGE_GUILD_COLOR" | "CUSTOM_TRADING_TABLE_COLOR" | "MORE_CHAT_BADGE_TIER_1" | "MORE_CHAT_BADGE_TIER_2" | "MUTE_USERS" | "BAN_USERS" | "MANAGE_MESSAGES" | "VIEW_AUDIT" | "MANAGE_REPORTS" | "BLACKLIST_USERS" | "MANAGE_USER_BLOOKS" | "MANAGE_USER_ITEMS" | "MANAGE_USER_TITLES" | "MANAGE_USER_BANNERS" | "MANAGE_NEWS_POSTS" | "MANAGE_USER_GROUPS" | "MANAGE_CHAT_ROOMS" | "MANAGE_GAME_DATA" | "DELETE_USERS" | "MANAGE_GAME_GROUPS";
 
 export enum BlookObtainMethodEnum {
   UNKNOWN = "UNKNOWN",
@@ -164,6 +163,7 @@ export interface Auction {
   seller?: User;
   buyerId: string | null;
   buyer?: User | null;
+  delistedAt: Date | null;
 }
 
 export interface AuctionBid {
@@ -186,6 +186,7 @@ export interface Banner {
   updatedAt: Date;
   resource?: Resource;
   userBanner?: UserBanner[];
+  itemShop?: ItemShop[];
 }
 
 export interface Blook {
@@ -229,6 +230,7 @@ export interface Font {
   user?: User[];
   resourceId: number;
   resource?: Resource;
+  itemShop?: ItemShop[];
 }
 
 export interface Form {
@@ -307,19 +309,23 @@ export interface Item {
 
 export interface ItemShop {
   id: number;
+  type: ItemShopItemType;
   itemId: number | null;
   blookId: number | null;
+  titleId: number | null;
+  bannerId: number | null;
+  fontId: number | null;
   price: number;
   enabled: boolean;
   weekly: boolean;
   priority: number;
   createdAt: Date;
   updatedAt: Date;
-  type: ItemShopItemType;
-  titleId: number | null;
   blook?: Blook | null;
   item?: Item | null;
   title?: Title | null;
+  banner?: Banner | null;
+  font?: Font | null;
 }
 
 export interface Message {
