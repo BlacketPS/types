@@ -224,13 +224,16 @@ export interface Emoji {
 export interface Font {
   id: number;
   name: string;
+  resourceId: number;
+  default: boolean;
+  priority: number;
   createdAt: Date;
   updatedAt: Date;
-  product?: Product[];
-  user?: User[];
-  resourceId: number;
   resource?: Resource;
   itemShop?: ItemShop[];
+  products?: Product[];
+  users?: User[];
+  userFont?: UserFont[];
 }
 
 export interface Form {
@@ -453,8 +456,8 @@ export interface Title {
   updatedAt: Date;
   itemShop?: ItemShop[];
   products?: Product[];
-  usersUsing?: User[];
-  usersOwned?: UserTitle[];
+  users?: User[];
+  userTitle?: UserTitle[];
 }
 
 export interface User {
@@ -503,6 +506,7 @@ export interface User {
   settings?: UserSetting | null;
   statistics?: UserStatistic | null;
   titles?: UserTitle[];
+  fonts?: UserFont[];
   auctions?: Auction[];
   wonAuctions?: Auction[];
 }
@@ -652,6 +656,16 @@ export interface UserStatistic {
   id: string;
   packsOpened: number;
   messagesSent: number;
+  user?: User;
+}
+
+export interface UserFont {
+  id: number;
+  userId: string;
+  fontId: number;
+  createdAt: Date;
+  updatedAt: Date;
+  font?: Font;
   user?: User;
 }
 

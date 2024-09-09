@@ -1,5 +1,5 @@
 import { Exclude } from "class-transformer";
-import type { Resource, UserBlook, UserItem, UserStatistic, UserDiscord, UserPaymentMethod, UserGroup, Group, PermissionType, UserGuild, UserTitle, UserBanner } from "../../interfaces";
+import type { Resource, UserBlook, UserItem, UserStatistic, UserDiscord, UserPaymentMethod, UserGroup, Group, PermissionType, UserGuild, UserTitle, UserBanner, UserFont } from "../../interfaces";
 import { UserBlookObject, UserSettings } from "./interface";
 
 export class PrivateUser {
@@ -30,8 +30,9 @@ export class PrivateUser {
     titleId: number;
     fontId: number;
 
-    titles: number[] = [];
-    banners: number[]  = [];
+    titles: number[] | UserTitle[] = [];
+    fonts: number[] | UserFont[] = [];
+    banners: number[] | UserBanner[] = [];
     badges: Group[];
 
     color: string;
@@ -75,6 +76,7 @@ export class PrivateUser {
         this.customBanner = (this.customBanner as Resource)?.path ?? null;
 
         this.titles = (this.titles as unknown as UserTitle[]).map((title) => title.titleId);
+        this.fonts = (this.fonts as unknown as UserFont[]).map((font) => font.fontId);
         this.banners = (this.banners as unknown as UserBanner[]).map((banner) => banner.bannerId);
 
         if (this.paymentMethods) this.paymentMethods = this.paymentMethods.map((method) => ({ ...method, userId: undefined }));
