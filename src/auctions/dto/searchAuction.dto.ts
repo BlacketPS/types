@@ -3,6 +3,10 @@ import { AuctionTypeEnum } from "../../interfaces";
 
 export class AuctionsSearchAuctionDto {
     @IsOptional()
+    @IsNumber()
+    readonly id?: number;
+
+    @IsOptional()
     @IsEnum(AuctionTypeEnum)
     readonly type?: AuctionTypeEnum;
 

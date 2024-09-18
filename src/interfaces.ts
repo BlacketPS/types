@@ -263,6 +263,7 @@ export interface Group {
   image?: Resource | null;
   products?: Product[];
   users?: UserGroup[];
+  discordRoleId: string | null;
 }
 
 export interface Guild {
@@ -346,6 +347,7 @@ export interface Message {
   replyingTo?: Message | null;
   replies?: Message[];
   room?: Room;
+  discordMessageId: string | null;
 }
 
 export interface Pack {
@@ -477,6 +479,7 @@ export interface User {
   ipAddress: string | null;
   createdAt: Date;
   updatedAt: Date;
+  lastSeen: Date | null;
   permissions: PermissionType[];
   bids?: AuctionBid[];
   form?: Form[];

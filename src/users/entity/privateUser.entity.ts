@@ -44,6 +44,8 @@ export class PrivateUser {
 
     lastClaimed: Date;
 
+    lastSeen: Date;
+
     createdAt: Date;
     updatedAt: Date;
 

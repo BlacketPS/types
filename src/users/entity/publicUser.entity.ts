@@ -13,11 +13,19 @@ export class PublicUser extends PrivateUser {
     @Exclude()
     permissions: PermissionType[] = undefined;
 
+    @Exclude()
+    lastClaimed: Date = undefined;
+
+    @Exclude()
+    lastSeen: Date = undefined;
+
     constructor(partial: Partial<PublicUser>) {
         super(partial);
 
         this.paymentMethods = undefined;
         this.settings = undefined;
         this.permissions = undefined;
+        this.lastClaimed = undefined;
+        this.lastSeen = undefined;
     }
 }

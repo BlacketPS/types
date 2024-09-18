@@ -7,10 +7,10 @@ export class AuctionsAuctionEntity {
     id: number;
 
     @Exclude()
-    sellerId: string = undefined;
+    sellerId?: string = undefined;
 
     @Exclude()
-    buyerId: string = undefined;
+    buyerId?: string = undefined;
 
     @Exclude()
     itemId: number = undefined;
