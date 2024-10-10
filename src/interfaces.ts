@@ -232,14 +232,13 @@ export interface Font {
   resource?: Resource;
   itemShop?: ItemShop[];
   products?: Product[];
-  users?: User[];
-  userFont?: UserFont[];
+  users?: UserFont[];
+  usersUsing?: User[];
 }
 
 export interface Form {
   id: string;
   username: string;
-  password: string;
   ipAddress: string;
   reasonToPlay: string;
   status: FormStatus;
@@ -458,8 +457,8 @@ export interface Title {
   updatedAt: Date;
   itemShop?: ItemShop[];
   products?: Product[];
-  users?: User[];
-  userTitle?: UserTitle[];
+  users?: UserTitle[];
+  usersUsing?: User[];
 }
 
 export interface User {
@@ -482,8 +481,8 @@ export interface User {
   lastSeen: Date | null;
   permissions: PermissionType[];
   bids?: AuctionBid[];
-  form?: Form[];
-  message?: Message[];
+  forms?: Form[];
+  messages?: Message[];
   rooms?: RoomUser[];
   sessions?: Session[];
   avatar?: Resource;
@@ -502,7 +501,7 @@ export interface User {
   ipAddresses?: UserIpAddress[];
   initiallyObtainedItems?: UserItem[];
   items?: UserItem[];
-  userOauth?: UserOAuth[];
+  userOAuth?: UserOAuth[];
   paymentMethods?: UserPaymentMethod[];
   givenPunishments?: UserPunishment[];
   punishments?: UserPunishment[];
@@ -651,6 +650,7 @@ export interface UserSetting {
   openPacksInstantly: boolean;
   friendRequests: SettingFriendRequest;
   categoriesClosed: string[];
+  tutorialsCompleted: string[];
   otpSecret: string | null;
   user?: User;
 }

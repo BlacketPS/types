@@ -21,6 +21,9 @@ export class PrivateUser {
     @Exclude()
     discordId: string = undefined;
 
+    @Exclude()
+    ipAddress: string = undefined;
+
     avatarId: number;
     bannerId: number;
 
@@ -62,8 +65,7 @@ export class PrivateUser {
 
     discord?: UserDiscord;
 
-    @Exclude()
-    ipAddress: string = undefined;
+    hasPermission: (permission: PermissionType) => boolean;
 
     constructor(partial: Partial<PrivateUser>) {
         Object.assign(this, partial);
@@ -77,19 +79,23 @@ export class PrivateUser {
         this.customAvatar = (this.customAvatar as Resource)?.path ?? null;
         this.customBanner = (this.customBanner as Resource)?.path ?? null;
 
-        this.titles = (this.titles as unknown as UserTitle[]).map((title) => title.titleId);
-        this.fonts = (this.fonts as unknown as UserFont[]).map((font) => font.fontId);
-        this.banners = (this.banners as unknown as UserBanner[]).map((banner) => banner.bannerId);
+        this.titles = (this.titles as UserTitle[]).map((title) => title.titleId);
+        this.fonts = (this.fonts as UserFont[]).map((font) => font.fontId);
+        this.banners = (this.banners as UserBanner[]).map((banner) => banner.bannerId);
 
         if (this.paymentMethods) this.paymentMethods = this.paymentMethods.map((method) => ({ ...method, userId: undefined }));
 
-        if (this.groups) this.badges = this.groups.reduce((acc, group) => [...acc, { ...group.group, permissions: undefined, deletedAt: undefined }], []).filter((badge) => badge.imageId !== null);
+        // sorts permissions including group permissions
+        if (this.groups) this.badges = this.groups
+            .reduce((acc, group) => [...acc, { ...group.group, permissions: undefined, deletedAt: undefined }], [])
+            .filter((badge) => badge.imageId !== null);
         if (this.permissions && this.groups) this.permissions = [...new Set([
             ...this.permissions,
             ...this.groups.reduce((acc, group) => [...acc, ...group.group.permissions], [])
         ])];
 
-        if (this.blooks) this.blooks = (this.blooks as unknown as UserBlook[]).flatMap((blook) => blook.blookId).reduce((acc, curr) => {
+        // converts UserBlook to UserBlookObject
+        if (this.blooks) this.blooks = (this.blooks as UserBlook[]).flatMap((blook) => blook.blookId).reduce((acc, curr) => {
             const key = String(curr);
 
             return { ...acc, [key]: acc[key] ? ++acc[key] : 1 };

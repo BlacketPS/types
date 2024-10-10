@@ -1,2 +1,1 @@
-export * from "./createForm.entity";
-export * from "./getForm.entity";
+export * from "./form.entity";
