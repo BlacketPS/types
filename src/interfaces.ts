@@ -404,20 +404,21 @@ export interface Rarity {
 export interface Resource {
   id: number;
   path: string;
+  reference: string | null;
   createdAt: Date;
   updatedAt: Date;
-  banner?: Banner[];
+  banners?: Banner[];
   blookBackgrounds?: Blook[];
   blooks?: Blook[];
-  emoji?: Emoji[];
-  font?: Font[];
-  group?: Group[];
-  guild?: Guild[];
-  item?: Item[];
-  pack?: Pack[];
-  product?: Product[];
-  avatars?: User[];
-  banners?: User[];
+  emojis?: Emoji[];
+  fonts?: Font[];
+  groups?: Group[];
+  guilds?: Guild[];
+  items?: Item[];
+  packs?: Pack[];
+  products?: Product[];
+  userAvatars?: User[];
+  userBanners?: User[];
   customAvatars?: User[];
   customBanners?: User[];
 }
