@@ -1,1 +1,0 @@
-export * from "./createPaymentMethod.entity";

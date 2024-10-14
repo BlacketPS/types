@@ -623,8 +623,7 @@ export interface UserOAuth {
 export interface UserPaymentMethod {
   id: number;
   userId: string;
-  squareCustomerId: string;
-  squarePaymentMethodId: string;
+  paymentMethodId: string;
   lastFour: string;
   createdAt: Date;
   updatedAt: Date;

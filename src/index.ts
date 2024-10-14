@@ -10,7 +10,7 @@ export * from "./chat";
 export * from "./discord";
 export * from "./staff";
 export * from "./cosmetics";
-export * from "./store";
+export * from "./stripe";
 export * from "./functions";
 export * from "./interfaces";
 export * from "./auctions";
