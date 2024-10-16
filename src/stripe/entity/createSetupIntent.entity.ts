@@ -1,4 +1,6 @@
 export class StripeCreateSetupIntentEntity {
+    id: string;
+
     clientSecret: string;
 
     constructor(partial: Partial<StripeCreateSetupIntentEntity>) {

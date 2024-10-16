@@ -12,5 +12,8 @@ export enum NotFound {
     UNKNOWN_ROOM = "That room does not exist.",
     UNKNOWN_AUCTION = "That auction does not exist.",
     UNKNOWN_SETTING = "Unknown setting.",
-    UNKNOWN_PAYMENT_METHOD = "That payment method does not exist."
+    UNKNOWN_PAYMENT_METHOD = "That payment method does not exist.",
+    UNKNOWN_SETUP_INTENT = "That setup intent does not exist.",
+    UNKNOWN_CUSTOMER = "That customer does not exist.",
+    UNKNOWN_PRODUCT = "That product does not exist."
 };

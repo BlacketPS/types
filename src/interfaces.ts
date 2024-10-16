@@ -46,9 +46,10 @@ export enum ProductTypeEnum {
   BLOOK = "BLOOK",
   TITLE = "TITLE",
   FONT = "FONT",
+  BANNER = "BANNER",
   OTHER = "OTHER"
 }
-export type ProductType = "ITEM" | "BLOOK" | "TITLE" | "FONT" | "OTHER";
+export type ProductType = "ITEM" | "BLOOK" | "TITLE" | "FONT" | "BANNER" | "OTHER";
 
 export enum RarityAnimationTypeEnum {
   UNCOMMON = "UNCOMMON",
@@ -187,6 +188,7 @@ export interface Banner {
   resource?: Resource;
   userBanner?: UserBanner[];
   itemShop?: ItemShop[];
+  products?: Product[];
 }
 
 export interface Blook {
@@ -368,25 +370,25 @@ export interface Product {
   id: number;
   name: string;
   description: string | null;
+  price: number;
   imageId: number;
   type: ProductType;
   itemId: number | null;
   blookId: number | null;
   titleId: number | null;
   fontId: number | null;
-  isSubscription: boolean;
-  monthlyPrice: number | null;
-  lifetimePrice: number | null;
+  bannerId: number | null;
   groupId: number | null;
   priority: number;
   createdAt: Date;
   updatedAt: Date;
+  image?: Resource;
   blook?: Blook | null;
-  font?: Font | null;
-  group?: Group | null;
-  resource?: Resource;
   item?: Item | null;
   title?: Title | null;
+  font?: Font | null;
+  banner?: Banner | null;
+  group?: Group | null;
 }
 
 export interface Rarity {
@@ -480,6 +482,7 @@ export interface User {
   createdAt: Date;
   updatedAt: Date;
   lastSeen: Date | null;
+  stripeCustomerId: string | null;
   permissions: PermissionType[];
   bids?: AuctionBid[];
   forms?: Form[];

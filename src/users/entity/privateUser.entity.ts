@@ -22,6 +22,9 @@ export class PrivateUser {
     discordId: string = undefined;
 
     @Exclude()
+    stripeCustomerId: string = undefined;
+
+    @Exclude()
     ipAddress: string = undefined;
 
     avatarId: number;
@@ -75,6 +78,7 @@ export class PrivateUser {
         this.customAvatarId = undefined;
         this.customBannerId = undefined;
         this.discordId = undefined;
+        this.stripeCustomerId = undefined;
 
         this.customAvatar = (this.customAvatar as Resource)?.path ?? null;
         this.customBanner = (this.customBanner as Resource)?.path ?? null;
