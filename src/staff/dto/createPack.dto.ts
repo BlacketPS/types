@@ -12,6 +12,9 @@ export class StaffAdminCreatePackDto {
     readonly imageId: number;
 
     @IsNotEmpty()
+    readonly iconId: number;
+
+    @IsNotEmpty()
     @Length(7)
     @Matches(/^#[0-9a-fA-F]{6}$/)
     @Validate((value: string) => value.length === 7)

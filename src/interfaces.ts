@@ -357,13 +357,15 @@ export interface Pack {
   price: number;
   enabled: boolean;
   imageId: number;
+  iconId: number;
   innerColor: string;
   outerColor: string;
   priority: number;
   createdAt: Date;
   updatedAt: Date;
   blook?: Blook[];
-  resource?: Resource;
+  image?: Resource;
+  icon?: Resource;
 }
 
 export interface Product {
@@ -379,6 +381,10 @@ export interface Product {
   fontId: number | null;
   bannerId: number | null;
   groupId: number | null;
+  isSubscription: boolean | null;
+  monthlyPrice: number | null;
+  yearlyPrice: number | null;
+  lifetimePrice: number | null;
   priority: number;
   createdAt: Date;
   updatedAt: Date;
@@ -389,6 +395,7 @@ export interface Product {
   font?: Font | null;
   banner?: Banner | null;
   group?: Group | null;
+  subscribers?: UserSubscription[];
 }
 
 export interface Rarity {
@@ -417,7 +424,8 @@ export interface Resource {
   groups?: Group[];
   guilds?: Guild[];
   items?: Item[];
-  packs?: Pack[];
+  packIcons?: Pack[];
+  packImages?: Pack[];
   products?: Product[];
   userAvatars?: User[];
   userBanners?: User[];
@@ -483,6 +491,8 @@ export interface User {
   updatedAt: Date;
   lastSeen: Date | null;
   stripeCustomerId: string | null;
+  subscriptionId: number | null;
+  subscription?: UserSubscription | null;
   permissions: PermissionType[];
   bids?: AuctionBid[];
   forms?: Form[];
@@ -683,4 +693,14 @@ export interface UserTitle {
   updatedAt: Date;
   title?: Title;
   user?: User;
+}
+
+export interface UserSubscription {
+  id: number;
+  userId: string;
+  productId: number;
+  createdAt: Date;
+  updatedAt: Date;
+  user?: User;
+  subscription?: Product;
 }
