@@ -8,7 +8,7 @@ type FastBlook = {
 
 const precalculatedChances: Record<number, FastBlook[]> = {};
 
-function precalculateChances(packId: number, packBlooks: Blook[]): FastBlook[] {
+function precalculateChances(packId: number, packBlooks: FastBlook[]): FastBlook[] {
 	if (precalculatedChances[packId]) return precalculatedChances[packId];
 
 	const totalChance = packBlooks.reduce((acc, curr) => acc + curr.chance, 0);
@@ -30,11 +30,14 @@ function open(blooks: FastBlook[]): number {
 	}
 }
 
-// TODO: implement booster chance manipulation
 export async function openPack(packId: number, packBlooks: Blook[], booster: number, amount: number = 1): Promise<Record<number, number> | number> {
 	if (!packBlooks.length) throw new Error(NotFound.UNKNOWN_PACK);
 
-	const optimisedPackBlooks = precalculateChances(packId, packBlooks);
+	const fastPackBlooksWithBooster = packBlooks.map((blook) => {
+		return { id: blook.id, chance: blook.chance * (blook.rarityId > 3 ? booster : 1) }
+	});
+
+	const optimisedPackBlooks = precalculateChances(packId, fastPackBlooksWithBooster);
 
 	if (optimisedPackBlooks.length === 1) {
 		return optimisedPackBlooks[0].id;

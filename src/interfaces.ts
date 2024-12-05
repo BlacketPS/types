@@ -17,6 +17,13 @@ export enum DayTypeEnum {
 }
 export type DayType = "MONDAY" | "TUESDAY" | "WEDNESDAY" | "THURSDAY" | "FRIDAY" | "SATURDAY" | "SUNDAY";
 
+export enum BoostTypeEnum {
+  CHANCE = "CHANCE",
+  EXPERIENCE = "EXPERIENCE",
+  SHINY = "SHINY"
+}
+export type BoostType = "CHANCE" | "EXPERIENCE" | "SHINY";
+
 export enum FormStatusEnum {
   PENDING = "PENDING",
   ACCEPTED = "ACCEPTED",
@@ -213,6 +220,18 @@ export interface Blook {
   userBlook?: UserBlook[];
 }
 
+export interface Boost {
+  id: number;
+  userId: string;
+  multiplier: number;
+  type: BoostType;
+  solo: boolean;
+  createdAt: Date;
+  updatedAt: Date;
+  expiresAt: Date;
+  user?: User;
+}
+
 export interface Emoji {
   id: number;
   name: string;
@@ -404,6 +423,7 @@ export interface Rarity {
   color: string;
   animationType: RarityAnimationType;
   experience: number;
+  affectedByBooster: boolean;
   createdAt: Date;
   updatedAt: Date;
   blook?: Blook[];
@@ -429,8 +449,6 @@ export interface Resource {
   products?: Product[];
   userAvatars?: User[];
   userBanners?: User[];
-  customAvatars?: User[];
-  customBanners?: User[];
 }
 
 export interface Room {
@@ -472,6 +490,17 @@ export interface Title {
   usersUsing?: User[];
 }
 
+export interface Upload {
+  id: number;
+  path: string;
+  userId: string;
+  createdAt: Date;
+  updatedAt: Date;
+  user?: User;
+  customAvatars?: User[];
+  customBanners?: User[];
+}
+
 export interface User {
   id: string;
   username: string;
@@ -484,12 +513,14 @@ export interface User {
   fontId: number;
   color: string;
   tokens: number;
+  crystals: number;
   experience: number;
-  lastClaimed: Date | null;
+  lastClaimed: Date;
+  lastRead: Date;
   ipAddress: string | null;
   createdAt: Date;
   updatedAt: Date;
-  lastSeen: Date | null;
+  lastSeen: Date;
   stripeCustomerId: string | null;
   subscriptionId: number | null;
   subscription?: UserSubscription | null;
@@ -501,8 +532,8 @@ export interface User {
   sessions?: Session[];
   avatar?: Resource;
   banner?: Resource;
-  customAvatar?: Resource | null;
-  customBanner?: Resource | null;
+  customAvatar?: Upload | null;
+  customBanner?: Upload | null;
   font?: Font;
   title?: Title;
   banners?: UserBanner[];
@@ -525,6 +556,8 @@ export interface User {
   fonts?: UserFont[];
   auctions?: Auction[];
   wonAuctions?: Auction[];
+  boosts?: Boost[];
+  uploads?: Upload[];
 }
 
 export interface UserBanner {
@@ -542,7 +575,8 @@ export interface UserBlook {
   userId: string;
   blookId: number;
   sold: boolean;
-  initalObtainerId: string;
+  shiny: boolean;
+  initialObtainerId: string;
   obtainedBy: BlookObtainMethod;
   createdAt: Date;
   updatedAt: Date;
