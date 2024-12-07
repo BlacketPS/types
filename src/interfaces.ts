@@ -198,6 +198,16 @@ export interface Banner {
   products?: Product[];
 }
 
+export interface Blacklist {
+  id: number;
+  ipAddressId: number;
+  punishmentId: number;
+  createdAt: Date;
+  updatedAt: Date;
+  ipAddress?: IpAddress;
+  punishment?: Punishment;
+}
+
 export interface Blook {
   id: number;
   name: string;
@@ -307,6 +317,7 @@ export interface IpAddress {
   createdAt: Date;
   updatedAt: Date;
   userIpAddresses?: UserIpAddress[];
+  blacklists?: Blacklist[];
 }
 
 export interface Item {
@@ -415,6 +426,20 @@ export interface Product {
   banner?: Banner | null;
   group?: Group | null;
   subscribers?: UserSubscription[];
+}
+
+export interface Punishment {
+  id: number;
+  userId: string;
+  type: PunishmentType;
+  reason: string;
+  expiresAt: Date;
+  staffId: string;
+  createdAt: Date;
+  updatedAt: Date;
+  staff?: User;
+  user?: User;
+  blacklists?: Blacklist[];
 }
 
 export interface Rarity {
@@ -548,8 +573,8 @@ export interface User {
   items?: UserItem[];
   userOAuth?: UserOAuth[];
   paymentMethods?: UserPaymentMethod[];
-  givenPunishments?: UserPunishment[];
-  punishments?: UserPunishment[];
+  givenPunishments?: Punishment[];
+  punishments?: Punishment[];
   settings?: UserSetting | null;
   statistics?: UserStatistic | null;
   titles?: UserTitle[];
@@ -676,19 +701,6 @@ export interface UserPaymentMethod {
   updatedAt: Date;
   cardBrand: string;
   primary: boolean;
-  user?: User;
-}
-
-export interface UserPunishment {
-  id: number;
-  userId: string;
-  type: PunishmentType;
-  reason: string;
-  expiresAt: Date;
-  staffId: string;
-  createdAt: Date;
-  updatedAt: Date;
-  staff?: User;
   user?: User;
 }
 
