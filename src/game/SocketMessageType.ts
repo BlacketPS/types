@@ -5,6 +5,8 @@ export enum SocketMessageType {
     PING = "PING",
     PONG = "PONG",
 
+    USER_UPDATED = "USER_UPDATED",
+
     CHAT_MESSAGES_CREATE = "CHAT_MESSAGES_CREATE",
     CHAT_TYPING_STARTED = "CHAT_TYPING_STARTED",
 

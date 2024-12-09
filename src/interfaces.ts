@@ -316,6 +316,7 @@ export interface IpAddress {
   ipAddress: string;
   createdAt: Date;
   updatedAt: Date;
+  users?: User[];
   userIpAddresses?: UserIpAddress[];
   blacklists?: Blacklist[];
 }
@@ -379,6 +380,19 @@ export interface Message {
   replies?: Message[];
   room?: Room;
   discordMessageId: string | null;
+}
+
+export interface NewsPost {
+  id: number;
+  title: string;
+  content: string;
+  imageId: number;
+  authorId: string;
+  createdAt: Date;
+  updatedAt: Date;
+  image?: Resource;
+  author?: User;
+  votes?: UserNewsPostVote[];
 }
 
 export interface Pack {
@@ -474,6 +488,7 @@ export interface Resource {
   products?: Product[];
   userAvatars?: User[];
   userBanners?: User[];
+  newsPosts?: NewsPost[];
 }
 
 export interface Room {
@@ -529,7 +544,7 @@ export interface Upload {
 export interface User {
   id: string;
   username: string;
-  password: string | null;
+  password: string;
   avatarId: number;
   customAvatarId: number | null;
   bannerId: number;
@@ -541,8 +556,7 @@ export interface User {
   crystals: number;
   experience: number;
   lastClaimed: Date;
-  lastRead: Date;
-  ipAddress: string | null;
+  ipAddressId: number;
   createdAt: Date;
   updatedAt: Date;
   lastSeen: Date;
@@ -568,6 +582,7 @@ export interface User {
   groups?: UserGroup[];
   guild?: UserGuild[];
   guildRequests?: UserGuildRequest[];
+  ipAddress?: IpAddress;
   ipAddresses?: UserIpAddress[];
   initiallyObtainedItems?: UserItem[];
   items?: UserItem[];
@@ -583,6 +598,8 @@ export interface User {
   wonAuctions?: Auction[];
   boosts?: Boost[];
   uploads?: Upload[];
+  newsPosts?: NewsPost[];
+  votedNewsPosts?: UserNewsPostVote[];
 }
 
 export interface UserBanner {
@@ -655,10 +672,10 @@ export interface UserGuildRequest {
 export interface UserIpAddress {
   id: number;
   userId: string;
+  ipAddressId: number;
   uses: number;
   createdAt: Date;
   updatedAt: Date;
-  ipAddressId: number;
   ipAddress?: IpAddress;
   user?: User;
 }
@@ -749,4 +766,15 @@ export interface UserSubscription {
   updatedAt: Date;
   user?: User;
   subscription?: Product;
+}
+
+export interface UserNewsPostVote {
+  id: number;
+  userId: string;
+  newsPostId: number;
+  vote: boolean;
+  createdAt: Date;
+  updatedAt: Date;
+  newsPost?: NewsPost;
+  user?: User;
 }

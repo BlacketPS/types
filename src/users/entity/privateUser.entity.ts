@@ -1,5 +1,5 @@
 import { Exclude } from "class-transformer";
-import type { UserBlook, UserItem, UserStatistic, UserDiscord, UserPaymentMethod, UserGroup, Group, PermissionType, UserGuild, UserTitle, UserBanner, UserFont, Upload } from "../../interfaces";
+import type { UserBlook, UserItem, UserStatistic, UserDiscord, UserPaymentMethod, UserGroup, Group, PermissionType, UserGuild, UserTitle, UserBanner, UserFont, Upload, IpAddress } from "../../interfaces";
 import { UserBlookObject, UserSettings } from "./interface";
 
 export class PrivateUser {
@@ -25,7 +25,10 @@ export class PrivateUser {
     stripeCustomerId: string = undefined;
 
     @Exclude()
-    ipAddress: string = undefined;
+    ipAddressId: number = undefined;
+
+    @Exclude()
+    ipAddress: IpAddress = undefined;
 
     avatarId: number;
     bannerId: number;
@@ -74,11 +77,12 @@ export class PrivateUser {
         Object.assign(this, partial);
 
         this.password = undefined;
-        this.ipAddress = undefined;
         this.customAvatarId = undefined;
         this.customBannerId = undefined;
         this.discordId = undefined;
         this.stripeCustomerId = undefined;
+        this.ipAddressId = undefined;
+        this.ipAddress = undefined;
 
         this.customAvatar = (this.customAvatar as Upload)?.path ?? null;
         this.customBanner = (this.customBanner as Upload)?.path ?? null;
