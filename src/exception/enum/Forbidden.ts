@@ -1,5 +1,5 @@
 export enum Forbidden {
-    DEFAULT = "You do not have permission to access this resource.",
+    DEFAULT = "You do not have permission to perform this action.",
     DEFAULT_NOT_ENOUGH_TOKENS = "You do not have enough tokens to perform this action.",
     AUTH_BANNED = "You are currently banned for %s. Your ban will expire %s. If you believe this is a mistake, please contact a staff member.",
     SETTINGS_REVOKED_CHANGE_USERNAME = "Your permission to change your username has been revoked by an administrator.",

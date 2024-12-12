@@ -103,11 +103,13 @@ export class PrivateUser {
         ])];
 
         // converts UserBlook to UserBlookObject
-        if (this.blooks) this.blooks = (this.blooks as UserBlook[]).flatMap((blook) => blook.blookId).reduce((acc, curr) => {
-            const key = String(curr);
+        if (this.blooks) this.blooks = (this.blooks as UserBlook[])
+            .flatMap((blook) => blook.blookId)
+            .reduce((acc, curr) => {
+                const key = String(curr);
 
-            return { ...acc, [key]: acc[key] ? ++acc[key] : 1 };
-        }, {});
+                return { ...acc, [key]: acc[key] ? ++acc[key] : 1 };
+            }, {});
 
         if (this.groups) this.groups = undefined;
 
