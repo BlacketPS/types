@@ -15,6 +15,7 @@ export enum Forbidden {
     AUCTIONS_BID_OWN_BID = "You are already the highest bidder.",
     AUCTIONS_REMOVE_HAS_BIDS = "You cannot remove a listing with bids.",
     CHAT_ROOM_NO_PERMISSION = "You do not have permission to access this chat room.",
+    CHAT_MESSAGE_NO_PERMISSION = "You do not have permission to perform actions on this message.",
     CHAT_MUTED = "You are currently muted for %s. Your mute will expire %s. If you believe this is a mistake, please contact a staff member.",
     QUESTS_DAILY_ALREADY_CLAIMED = "You have already claimed your daily tokens.",
     AUCTIONS_TAX_NOT_ENOUGH_TOKENS = "You do not have enough tokens to create an auction.",
