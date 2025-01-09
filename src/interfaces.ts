@@ -113,9 +113,10 @@ export type PermissionType = "CREATE_REPORTS" | "CHANGE_USERNAME" | "CHANGE_NAME
 export enum BlookObtainMethodEnum {
   UNKNOWN = "UNKNOWN",
   PACK_OPEN = "PACK_OPEN",
+  PURCHASE = "PURCHASE",
   STAFF = "STAFF"
 }
-export type BlookObtainMethod = "UNKNOWN" | "PACK_OPEN" | "STAFF";
+export type BlookObtainMethod = "UNKNOWN" | "PACK_OPEN" | "PURCHASE" | "STAFF";
 
 export enum ItemObtainMethodEnum {
   UNKNOWN = "UNKNOWN",
@@ -417,6 +418,8 @@ export interface Product {
   description: string | null;
   price: number;
   imageId: number;
+  color1: string;
+  color2: string;
   type: ProductType;
   itemId: number | null;
   blookId: number | null;
@@ -439,6 +442,7 @@ export interface Product {
   banner?: Banner | null;
   group?: Group | null;
   subscribers?: UserSubscription[];
+  stores?: Store[];
 }
 
 export interface Punishment {
@@ -515,6 +519,17 @@ export interface Session {
   userId: string;
   createdAt: Date;
   user?: User;
+}
+
+export interface Store {
+  id: number;
+  name: string;
+  description: string;
+  priority: number;
+  products?: Product[];
+  createdAt: Date;
+  updatedAt: Date;
+  active: boolean;
 }
 
 export interface Title {
