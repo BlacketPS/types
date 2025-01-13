@@ -1,5 +1,5 @@
 import { Exclude } from "class-transformer";
-import type { UserBlook, UserItem, UserStatistic, UserDiscord, UserPaymentMethod, UserGroup, Group, PermissionType, UserGuild, UserTitle, UserBanner, UserFont, Upload, IpAddress } from "../../interfaces";
+import type { UserBlook, UserItem, UserStatistic, UserDiscord, UserPaymentMethod, UserGroup, Group, PermissionType, UserGuild, UserTitle, UserBanner, UserFont, Upload, IpAddress, Room } from "../../interfaces";
 import { UserBlookObject, UserSettings } from "./interface";
 
 export class PrivateUser {
@@ -66,6 +66,8 @@ export class PrivateUser {
     paymentMethods: UserPaymentMethod[];
 
     guild: UserGuild[];
+
+    rooms: Room[];
 
     statistics: UserStatistic;
 

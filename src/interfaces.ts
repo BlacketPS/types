@@ -501,17 +501,7 @@ export interface Room {
   createdAt: Date;
   updatedAt: Date;
   messages?: Message[];
-  users?: RoomUser[];
-}
-
-export interface RoomUser {
-  id: number;
-  createdAt: Date;
-  updatedAt: Date;
-  roomId: number;
-  room?: Room;
-  userId: string;
-  user?: User;
+  users?: User[];
 }
 
 export interface Session {
@@ -581,7 +571,7 @@ export interface User {
   bids?: AuctionBid[];
   forms?: Form[];
   messages?: Message[];
-  rooms?: RoomUser[];
+  rooms?: Room[];
   sessions?: Session[];
   avatar?: Resource;
   banner?: Resource;

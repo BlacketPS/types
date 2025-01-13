@@ -16,5 +16,6 @@ export enum NotFound {
     UNKNOWN_PAYMENT_METHOD = "That payment method does not exist.",
     UNKNOWN_SETUP_INTENT = "That setup intent does not exist.",
     UNKNOWN_CUSTOMER = "That customer does not exist.",
-    UNKNOWN_PRODUCT = "That product does not exist."
+    UNKNOWN_PRODUCT = "That product does not exist.",
+    UNKNOWN_UPLOAD = "That upload does not exist."
 };
