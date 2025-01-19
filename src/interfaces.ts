@@ -84,7 +84,6 @@ export enum PermissionTypeEnum {
   LESS_AUCTION_TAX = "LESS_AUCTION_TAX",
   MORE_CHAT_BADGE_TIER_1 = "MORE_CHAT_BADGE_TIER_1",
   CUSTOM_TRADING_TABLE_COLOR = "CUSTOM_TRADING_TABLE_COLOR",
-  CHANGE_FONT = "CHANGE_FONT",
   MORE_AUCTIONS_TIER_3 = "MORE_AUCTIONS_TIER_3",
   MORE_CHAT_BADGE_TIER_2 = "MORE_CHAT_BADGE_TIER_2",
   UPLOAD_FILES_LARGE = "UPLOAD_FILES_LARGE",
@@ -101,14 +100,15 @@ export enum PermissionTypeEnum {
   MANAGE_USER_ITEMS = "MANAGE_USER_ITEMS",
   MANAGE_USER_TITLES = "MANAGE_USER_TITLES",
   MANAGE_USER_BANNERS = "MANAGE_USER_BANNERS",
+  MANAGE_USER_FONTS = "MANAGE_USER_FONTS",
   MANAGE_NEWS_POSTS = "MANAGE_NEWS_POSTS",
   MANAGE_USER_GROUPS = "MANAGE_USER_GROUPS",
   MANAGE_CHAT_ROOMS = "MANAGE_CHAT_ROOMS",
-  MANAGE_GAME_DATA = "MANAGE_GAME_DATA",
+  MANAGE_DATA = "MANAGE_DATA",
   DELETE_USERS = "DELETE_USERS",
-  MANAGE_GAME_GROUPS = "MANAGE_GAME_GROUPS"
+  MANAGE_GROUPS = "MANAGE_GROUPS"
 }
-export type PermissionType = "CREATE_REPORTS" | "CHANGE_USERNAME" | "CHANGE_NAME_COLOR_TIER_1" | "EARLY_ACCESS_TIER_1" | "USE_CHAT_COLORS" | "UPLOAD_FILES_SMALL" | "MORE_AUCTIONS_TIER_1" | "CREATE_GUILDS" | "CHANGE_NAME_COLOR_TIER_2" | "EARLY_ACCESS_TIER_2" | "UPLOAD_FILES_MEDIUM" | "MORE_AUCTIONS_TIER_2" | "LESS_AUCTION_TAX" | "MORE_CHAT_BADGE_TIER_1" | "CUSTOM_TRADING_TABLE_COLOR" | "CHANGE_FONT" | "MORE_AUCTIONS_TIER_3" | "MORE_CHAT_BADGE_TIER_2" | "UPLOAD_FILES_LARGE" | "MORE_AUCTIONS_TIER_4" | "CUSTOM_AVATAR" | "CUSTOM_BANNER" | "MUTE_USERS" | "BAN_USERS" | "MANAGE_MESSAGES" | "VIEW_AUDIT" | "MANAGE_REPORTS" | "BLACKLIST_USERS" | "MANAGE_USER_BLOOKS" | "MANAGE_USER_ITEMS" | "MANAGE_USER_TITLES" | "MANAGE_USER_BANNERS" | "MANAGE_NEWS_POSTS" | "MANAGE_USER_GROUPS" | "MANAGE_CHAT_ROOMS" | "MANAGE_GAME_DATA" | "DELETE_USERS" | "MANAGE_GAME_GROUPS";
+export type PermissionType = "CREATE_REPORTS" | "CHANGE_USERNAME" | "CHANGE_NAME_COLOR_TIER_1" | "EARLY_ACCESS_TIER_1" | "USE_CHAT_COLORS" | "UPLOAD_FILES_SMALL" | "MORE_AUCTIONS_TIER_1" | "CREATE_GUILDS" | "CHANGE_NAME_COLOR_TIER_2" | "EARLY_ACCESS_TIER_2" | "UPLOAD_FILES_MEDIUM" | "MORE_AUCTIONS_TIER_2" | "LESS_AUCTION_TAX" | "MORE_CHAT_BADGE_TIER_1" | "CUSTOM_TRADING_TABLE_COLOR" | "MORE_AUCTIONS_TIER_3" | "MORE_CHAT_BADGE_TIER_2" | "UPLOAD_FILES_LARGE" | "MORE_AUCTIONS_TIER_4" | "CUSTOM_AVATAR" | "CUSTOM_BANNER" | "MUTE_USERS" | "BAN_USERS" | "MANAGE_MESSAGES" | "VIEW_AUDIT" | "MANAGE_REPORTS" | "BLACKLIST_USERS" | "MANAGE_USER_BLOOKS" | "MANAGE_USER_ITEMS" | "MANAGE_USER_TITLES" | "MANAGE_USER_BANNERS" | "MANAGE_USER_FONTS" | "MANAGE_NEWS_POSTS" | "MANAGE_USER_GROUPS" | "MANAGE_CHAT_ROOMS" | "MANAGE_DATA" | "DELETE_USERS" | "MANAGE_GROUPS";
 
 export enum BlookObtainMethodEnum {
   UNKNOWN = "UNKNOWN",
@@ -443,6 +443,7 @@ export interface Product {
   group?: Group | null;
   subscribers?: UserSubscription[];
   stores?: Store[];
+  transactions?: Transaction[];
 }
 
 export interface Punishment {
@@ -534,6 +535,19 @@ export interface Title {
   usersUsing?: User[];
 }
 
+export interface Transaction {
+  id: number;
+  userId: string;
+  price: number;
+  productId: number;
+  paymentMethodId: number;
+  stripePaymentId: string;
+  createdAt: Date;
+  user?: User;
+  product?: Product;
+  paymentMethod?: UserPaymentMethod;
+}
+
 export interface Upload {
   id: number;
   path: string;
@@ -604,6 +618,7 @@ export interface User {
   uploads?: Upload[];
   newsPosts?: NewsPost[];
   votedNewsPosts?: UserNewsPostVote[];
+  transactions?: Transaction[];
 }
 
 export interface UserBanner {
@@ -723,6 +738,7 @@ export interface UserPaymentMethod {
   cardBrand: string;
   primary: boolean;
   user?: User;
+  transactions?: Transaction[];
 }
 
 export interface UserSetting {
