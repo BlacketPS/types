@@ -1,15 +1,10 @@
-import { IsInt, IsNotEmpty, IsNumber, Min } from "class-validator";
-import type { Blook } from "../../interfaces";
+import { ArrayMinSize, IsArray, IsNotEmpty } from "class-validator";
 
 export class BlooksSellBlookDto {
-    @IsNotEmpty()
-    @IsNumber()
-    readonly blookId: Blook["id"];
-
-    @IsNotEmpty()
-    @IsInt()
-    @Min(1)
-    readonly quantity: number;
+    @IsNotEmpty({ each: true })
+    @IsArray()
+    @ArrayMinSize(1)
+    readonly blooks: number[];
 }
 
 export default BlooksSellBlookDto;

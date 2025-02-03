@@ -27,7 +27,7 @@ export class NewsNewsPostEntity {
         Object.assign(this, partial);
 
         this.authorId = undefined;
-        this.author = new PublicUser(this.author);
+        this.author = new PublicUser(this.author as PublicUser);
 
         if (!this.myVote) this.myVote = null;
     }

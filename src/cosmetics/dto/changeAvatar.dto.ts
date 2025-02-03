@@ -3,7 +3,7 @@ import { IsNotEmpty, IsNumber } from "class-validator";
 export class CosmeticsChangeAvatarDto {
     @IsNotEmpty()
     @IsNumber()
-    readonly blookId: number;
+    readonly id: number;
 }
 
 export default CosmeticsChangeAvatarDto;

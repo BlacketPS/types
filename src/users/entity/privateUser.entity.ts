@@ -1,6 +1,6 @@
 import { Exclude } from "class-transformer";
 import type { UserBlook, UserItem, UserStatistic, UserDiscord, UserPaymentMethod, UserGroup, Group, PermissionType, UserGuild, UserTitle, UserBanner, UserFont, Upload, IpAddress, Room } from "../../interfaces";
-import { UserBlookObject, UserSettings } from "./interface";
+import { UserAvatar, UserBlookObject, UserSettings } from "./interface";
 
 export class PrivateUser {
     id: string;
@@ -11,6 +11,9 @@ export class PrivateUser {
 
     @Exclude()
     groups: UserGroup[];
+
+    @Exclude()
+    avatarId: number = undefined;
 
     @Exclude()
     customAvatarId: number = undefined;
@@ -30,8 +33,9 @@ export class PrivateUser {
     @Exclude()
     ipAddress: IpAddress = undefined;
 
-    avatarId: number;
-    bannerId: number;
+    avatar?: UserAvatar | UserBlook;
+
+    bannerId?: number;
 
     customAvatar?: string | Upload;
     customBanner?: string | Upload;
@@ -58,7 +62,7 @@ export class PrivateUser {
     createdAt: Date;
     updatedAt: Date;
 
-    blooks: UserBlook[] | UserBlookObject = [];
+    blooks: UserBlook[] = []; // | UserBlookObject = [];
     items: UserItem[] = [];
 
     settings: UserSettings;
@@ -79,12 +83,19 @@ export class PrivateUser {
         Object.assign(this, partial);
 
         this.password = undefined;
+        this.avatarId = undefined;
         this.customAvatarId = undefined;
         this.customBannerId = undefined;
         this.discordId = undefined;
         this.stripeCustomerId = undefined;
         this.ipAddressId = undefined;
         this.ipAddress = undefined;
+
+        if (this.avatar) this.avatar = {
+            ...this.avatar,
+            blook: undefined,
+            resourceId: (this.avatar as UserBlook).blook.imageId
+        };
 
         this.customAvatar = (this.customAvatar as Upload)?.path ?? null;
         this.customBanner = (this.customBanner as Upload)?.path ?? null;
@@ -104,14 +115,14 @@ export class PrivateUser {
             ...this.groups.reduce((acc, group) => [...acc, ...group.group.permissions], [])
         ])];
 
-        // converts UserBlook to UserBlookObject
-        if (this.blooks) this.blooks = (this.blooks as UserBlook[])
-            .flatMap((blook) => blook.blookId)
-            .reduce((acc, curr) => {
-                const key = String(curr);
+        // // converts UserBlook to UserBlookObject
+        // if (this.blooks) this.blooks = (this.blooks as UserBlook[])
+        //     .flatMap((blook) => blook.blookId)
+        //     .reduce((acc, curr) => {
+        //         const key = String(curr);
 
-                return { ...acc, [key]: acc[key] ? ++acc[key] : 1 };
-            }, {});
+        //         return { ...acc, [key]: acc[key] ? ++acc[key] : 1 };
+        //     }, {});
 
         if (this.groups) this.groups = undefined;
 

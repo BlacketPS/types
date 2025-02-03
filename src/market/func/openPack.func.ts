@@ -1,58 +1,63 @@
 import { NotFound } from "../../exception/enum/NotFound";
-import type { Blook } from "../../interfaces";
+import type { Blook, Rarity } from "../../interfaces";
 
-type FastBlook = {
+export type FastBlook = {
 	id: number;
 	chance: number;
+    shinyChance: number;
 }
 
-const precalculatedChances: Record<number, FastBlook[]> = {};
+export type ResponseBlook = {
+    blookId: number;
+    shiny: boolean;
+}
 
-function precalculateChances(packId: number, packBlooks: FastBlook[]): FastBlook[] {
-	if (precalculatedChances[packId]) return precalculatedChances[packId];
+function precalculateChances(blooks: FastBlook[]): FastBlook[] {
+	const totalChance = blooks.reduce((acc, curr) => acc + curr.chance, 0);
 
-	const totalChance = packBlooks.reduce((acc, curr) => acc + curr.chance, 0);
-
-	const chances: FastBlook[] = packBlooks.map((blook) => {
-		return { id: blook.id, chance: (blook.chance / totalChance) }
+	const chances: FastBlook[] = blooks.map((blook) => {
+		return { id: blook.id, chance: (blook.chance / totalChance), shinyChance: blook.shinyChance }
 	});
-
-	precalculatedChances[packId] = chances;
 
 	return chances;
 }
 
-function open(blooks: FastBlook[]): number {
+function open(blooks: FastBlook[]): ResponseBlook {
 	let rand = Math.random() * (1 + Number.MIN_VALUE);
 
 	for (const blook of blooks) {
-		if ((rand -= blook.chance) < 0) return blook.id;
+		if ((rand -= blook.chance) < 0) {
+            const shiny = Math.random() < blook.shinyChance;
+
+            return {
+                blookId: blook.id,
+                shiny: shiny
+            }
+        }
 	}
 }
 
-export async function openPack(packId: number, packBlooks: Blook[], booster: number, amount: number = 1): Promise<Record<number, number> | number> {
-	if (!packBlooks.length) throw new Error(NotFound.UNKNOWN_PACK);
+export async function openPack(blooks: Blook[], rarities: Rarity[], amount: number = 1, booster?: number, shinyBooster?: number): Promise<ResponseBlook[]> {
+	if (!blooks.length) throw new Error(NotFound.UNKNOWN_PACK);
 
-	const fastPackBlooksWithBooster = packBlooks.map((blook) => {
-		return { id: blook.id, chance: blook.chance * (blook.rarityId > 3 ? booster : 1) }
+	const fastPackBlooksWithBooster = blooks.map((blook) => {
+        const rarity = rarities.find((rarity) => rarity.id === blook.rarityId);
+
+        return {
+            id: blook.id,
+            chance: blook.chance * ((rarity.affectedByBooster ? (booster ?? 1) : 1)),
+            shinyChance: 0.001 * (shinyBooster ?? 1)
+        }
 	});
 
-	const optimisedPackBlooks = precalculateChances(packId, fastPackBlooksWithBooster);
+	const optimisedPackBlooks = precalculateChances(fastPackBlooksWithBooster);
 
-	if (optimisedPackBlooks.length === 1) {
-		return optimisedPackBlooks[0].id;
-	}
-
-	if (amount === 1) {
-		const blookId = open(optimisedPackBlooks);
-		return blookId;
-	}
-
-	const res: Record<number, number> = {};
+	const res: ResponseBlook[] = [];
 
 	for (let i = 0; i < amount; i++) {
-		const blookId = open(optimisedPackBlooks);
-		res[blookId] = (res[blookId] || 0) + 1;
+		const blook = open(optimisedPackBlooks);
+
+		res.push(blook);
 	}
 
 	return res;

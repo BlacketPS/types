@@ -6,6 +6,13 @@ export enum AuctionTypeEnum {
 }
 export type AuctionType = "ITEM" | "BLOOK";
 
+export enum AuditLogActionEnum {
+  CREATE = "CREATE",
+  UPDATE = "UPDATE",
+  DELETE = "DELETE"
+}
+export type AuditLogAction = "CREATE" | "UPDATE" | "DELETE";
+
 export enum DayTypeEnum {
   MONDAY = "MONDAY",
   TUESDAY = "TUESDAY",
@@ -95,6 +102,7 @@ export enum PermissionTypeEnum {
   MANAGE_MESSAGES = "MANAGE_MESSAGES",
   VIEW_AUDIT = "VIEW_AUDIT",
   MANAGE_REPORTS = "MANAGE_REPORTS",
+  REVERT_AUDIT = "REVERT_AUDIT",
   BLACKLIST_USERS = "BLACKLIST_USERS",
   MANAGE_USER_BLOOKS = "MANAGE_USER_BLOOKS",
   MANAGE_USER_ITEMS = "MANAGE_USER_ITEMS",
@@ -108,7 +116,7 @@ export enum PermissionTypeEnum {
   DELETE_USERS = "DELETE_USERS",
   MANAGE_GROUPS = "MANAGE_GROUPS"
 }
-export type PermissionType = "CREATE_REPORTS" | "CHANGE_USERNAME" | "CHANGE_NAME_COLOR_TIER_1" | "EARLY_ACCESS_TIER_1" | "USE_CHAT_COLORS" | "UPLOAD_FILES_SMALL" | "MORE_AUCTIONS_TIER_1" | "CREATE_GUILDS" | "CHANGE_NAME_COLOR_TIER_2" | "EARLY_ACCESS_TIER_2" | "UPLOAD_FILES_MEDIUM" | "MORE_AUCTIONS_TIER_2" | "LESS_AUCTION_TAX" | "MORE_CHAT_BADGE_TIER_1" | "CUSTOM_TRADING_TABLE_COLOR" | "MORE_AUCTIONS_TIER_3" | "MORE_CHAT_BADGE_TIER_2" | "UPLOAD_FILES_LARGE" | "MORE_AUCTIONS_TIER_4" | "CUSTOM_AVATAR" | "CUSTOM_BANNER" | "MUTE_USERS" | "BAN_USERS" | "MANAGE_MESSAGES" | "VIEW_AUDIT" | "MANAGE_REPORTS" | "BLACKLIST_USERS" | "MANAGE_USER_BLOOKS" | "MANAGE_USER_ITEMS" | "MANAGE_USER_TITLES" | "MANAGE_USER_BANNERS" | "MANAGE_USER_FONTS" | "MANAGE_NEWS_POSTS" | "MANAGE_USER_GROUPS" | "MANAGE_CHAT_ROOMS" | "MANAGE_DATA" | "DELETE_USERS" | "MANAGE_GROUPS";
+export type PermissionType = "CREATE_REPORTS" | "CHANGE_USERNAME" | "CHANGE_NAME_COLOR_TIER_1" | "EARLY_ACCESS_TIER_1" | "USE_CHAT_COLORS" | "UPLOAD_FILES_SMALL" | "MORE_AUCTIONS_TIER_1" | "CREATE_GUILDS" | "CHANGE_NAME_COLOR_TIER_2" | "EARLY_ACCESS_TIER_2" | "UPLOAD_FILES_MEDIUM" | "MORE_AUCTIONS_TIER_2" | "LESS_AUCTION_TAX" | "MORE_CHAT_BADGE_TIER_1" | "CUSTOM_TRADING_TABLE_COLOR" | "MORE_AUCTIONS_TIER_3" | "MORE_CHAT_BADGE_TIER_2" | "UPLOAD_FILES_LARGE" | "MORE_AUCTIONS_TIER_4" | "CUSTOM_AVATAR" | "CUSTOM_BANNER" | "MUTE_USERS" | "BAN_USERS" | "MANAGE_MESSAGES" | "VIEW_AUDIT" | "MANAGE_REPORTS" | "REVERT_AUDIT" | "BLACKLIST_USERS" | "MANAGE_USER_BLOOKS" | "MANAGE_USER_ITEMS" | "MANAGE_USER_TITLES" | "MANAGE_USER_BANNERS" | "MANAGE_USER_FONTS" | "MANAGE_NEWS_POSTS" | "MANAGE_USER_GROUPS" | "MANAGE_CHAT_ROOMS" | "MANAGE_DATA" | "DELETE_USERS" | "MANAGE_GROUPS";
 
 export enum BlookObtainMethodEnum {
   UNKNOWN = "UNKNOWN",
@@ -185,6 +193,23 @@ export interface AuctionBid {
   user?: User;
 }
 
+export interface AuditLog {
+  id: number;
+  action: AuditLogAction;
+  model: string;
+  relatedTo?: AuditLog[];
+  relatedBy?: AuditLog[];
+  recordId: number;
+  delta: JsonValue | null;
+  deltaFields: string[];
+  isUndone: boolean;
+  undoneById: string | null;
+  undoneBy?: User | null;
+  actorId: string | null;
+  actor?: User | null;
+  createdAt: Date;
+}
+
 export interface Banner {
   id: number;
   name: string;
@@ -218,6 +243,7 @@ export interface Blook {
   backgroundId: number;
   packId: number | null;
   onlyOnDay: DayType | null;
+  shinyHue: number | null;
   priority: number;
   createdAt: Date;
   updatedAt: Date;
@@ -490,7 +516,6 @@ export interface Resource {
   packIcons?: Pack[];
   packImages?: Pack[];
   products?: Product[];
-  userAvatars?: User[];
   userBanners?: User[];
   newsPosts?: NewsPost[];
 }
@@ -563,9 +588,9 @@ export interface User {
   id: string;
   username: string;
   password: string;
-  avatarId: number;
+  avatarId: number | null;
   customAvatarId: number | null;
-  bannerId: number;
+  bannerId: number | null;
   customBannerId: number | null;
   titleId: number;
   fontId: number;
@@ -587,8 +612,10 @@ export interface User {
   messages?: Message[];
   rooms?: Room[];
   sessions?: Session[];
-  avatar?: Resource;
-  banner?: Resource;
+  friendedBy?: User[];
+  friends?: User[];
+  avatar?: UserBlook | null;
+  banner?: Resource | null;
   customAvatar?: Upload | null;
   customBanner?: Upload | null;
   font?: Font;
@@ -619,6 +646,8 @@ export interface User {
   newsPosts?: NewsPost[];
   votedNewsPosts?: UserNewsPostVote[];
   transactions?: Transaction[];
+  auditLogs?: AuditLog[];
+  undoneLogs?: AuditLog[];
 }
 
 export interface UserBanner {
@@ -645,6 +674,7 @@ export interface UserBlook {
   initialObtainer?: User;
   user?: User;
   auctions?: Auction[];
+  avatars?: User[];
 }
 
 export interface UserDiscord {
@@ -798,3 +828,5 @@ export interface UserNewsPostVote {
   newsPost?: NewsPost;
   user?: User;
 }
+
+type JsonValue = string | number | boolean | { [key in string]?: JsonValue } | Array<JsonValue> | null;
