@@ -416,7 +416,7 @@ export interface NewsPost {
   authorId: string;
   createdAt: Date;
   updatedAt: Date;
-  image?: Resource;
+  image?: Upload;
   author?: User;
   votes?: UserNewsPostVote[];
 }
@@ -517,7 +517,6 @@ export interface Resource {
   packImages?: Pack[];
   products?: Product[];
   userBanners?: User[];
-  newsPosts?: NewsPost[];
 }
 
 export interface Room {
@@ -582,6 +581,7 @@ export interface Upload {
   user?: User;
   customAvatars?: User[];
   customBanners?: User[];
+  newsPosts?: NewsPost[];
 }
 
 export interface User {

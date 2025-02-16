@@ -1,16 +1,19 @@
 import { Exclude } from "class-transformer";
-import { PublicUser, User } from "../..";
+import { PublicUser, Upload, User } from "../..";
 
 export class NewsNewsPostEntity {
     @Exclude()
     authorId: string;
+
+    @Exclude()
+    imageId: number;
 
     id: number;
 
     title: string;
     content: string;
 
-    imageId: number;
+    image: string | Upload;
 
     author: PublicUser | User;
 
@@ -28,6 +31,9 @@ export class NewsNewsPostEntity {
 
         this.authorId = undefined;
         this.author = new PublicUser(this.author as PublicUser);
+
+        this.imageId = undefined;
+        this.image = (this.image as Upload).path;
 
         if (!this.myVote) this.myVote = null;
     }
