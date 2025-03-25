@@ -31,13 +31,6 @@ export enum BoostTypeEnum {
 }
 export type BoostType = "CHANCE" | "EXPERIENCE" | "SHINY";
 
-export enum FormStatusEnum {
-  PENDING = "PENDING",
-  ACCEPTED = "ACCEPTED",
-  DENIED = "DENIED"
-}
-export type FormStatus = "PENDING" | "ACCEPTED" | "DENIED";
-
 export enum ItemTypeEnum {
   NONE = "NONE",
   BOOSTER = "BOOSTER",
@@ -291,19 +284,6 @@ export interface Font {
   products?: Product[];
   users?: UserFont[];
   usersUsing?: User[];
-}
-
-export interface Form {
-  id: string;
-  username: string;
-  ipAddress: string;
-  reasonToPlay: string;
-  status: FormStatus;
-  deniedReason: string | null;
-  createdAt: Date;
-  updatedAt: Date;
-  accepterId: string | null;
-  accepter?: User | null;
 }
 
 export interface Group {
@@ -608,7 +588,6 @@ export interface User {
   subscription?: UserSubscription | null;
   permissions: PermissionType[];
   bids?: AuctionBid[];
-  forms?: Form[];
   messages?: Message[];
   rooms?: Room[];
   sessions?: Session[];
