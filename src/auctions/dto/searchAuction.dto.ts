@@ -28,6 +28,10 @@ export class AuctionsSearchAuctionDto {
 
     @IsOptional()
     @IsBoolean()
+    readonly shiny?: boolean;
+
+    @IsOptional()
+    @IsBoolean()
     readonly endingSoon?: boolean;
 
     @IsOptional()

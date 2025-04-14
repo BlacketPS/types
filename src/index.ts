@@ -15,3 +15,4 @@ export * from "./interfaces";
 export * from "./auctions";
 export * from "./trading-plaza";
 export * from "./news";
+export * from "./data";

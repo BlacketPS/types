@@ -1,4 +1,4 @@
-import { AuctionType, UserItem } from "../../interfaces";
+import { AuctionType, UserBlook, UserItem } from "../../interfaces";
 
 export class SocketAuctionBidEntity {
     id: number;
@@ -9,7 +9,7 @@ export class SocketAuctionBidEntity {
 
     type: AuctionType;
 
-    blookId?: number;
+    blook?: Partial<UserBlook>;
     item?: Partial<UserItem>;
 
     bidderId: string;

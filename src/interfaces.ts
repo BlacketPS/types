@@ -568,6 +568,8 @@ export interface User {
   id: string;
   username: string;
   password: string;
+  email: string | null;
+  emailVerified: boolean;
   avatarId: number | null;
   customAvatarId: number | null;
   bannerId: number | null;

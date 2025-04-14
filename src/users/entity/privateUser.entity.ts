@@ -5,6 +5,8 @@ import { UserAvatar, UserBlookObject, UserSettings } from "./interface";
 export class PrivateUser {
     id: string;
     username: string;
+    email: string;
+    emailVerified: boolean;
 
     @Exclude()
     password: string = undefined;
@@ -78,6 +80,7 @@ export class PrivateUser {
     discord?: UserDiscord;
 
     hasPermission: (permission: PermissionType) => boolean;
+    setTokens: (tokens: number) => number;
 
     constructor(partial: Partial<PrivateUser>) {
         Object.assign(this, partial);

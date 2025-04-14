@@ -5,6 +5,12 @@ import { PermissionType, UserPaymentMethod } from "../../interfaces";
 
 export class PublicUser extends PrivateUser {
     @Exclude()
+    email: string = undefined;
+
+    @Exclude()
+    emailVerified: boolean = undefined;
+
+    @Exclude()
     paymentMethods: UserPaymentMethod[] = undefined;
 
     @Exclude()
@@ -22,6 +28,8 @@ export class PublicUser extends PrivateUser {
     constructor(partial: Partial<PublicUser>) {
         super(partial);
 
+        this.email = undefined;
+        this.emailVerified = undefined;
         this.paymentMethods = undefined;
         this.settings = undefined;
         this.permissions = undefined;

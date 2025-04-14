@@ -16,16 +16,13 @@ export class AuctionsAuctionEntity {
     itemId: number = undefined;
 
     @Exclude()
-    blook?: UserBlook;
-
-    @Exclude()
     delistedAt?: Date;
 
     item?: UserItem;
 
-    type: AuctionType;
+    blook?: UserBlook;
 
-    blookId?: number;
+    type: AuctionType;
 
     price: number;
 
@@ -45,10 +42,7 @@ export class AuctionsAuctionEntity {
         this.seller = new PublicUser(partial.seller);
         this.buyerId = undefined;
 
-        if (partial.blook) this.blookId = partial.blook.blookId;
         if (partial.bids) this.bids = partial.bids.map((bid) => new AuctionsBidEntity(bid));
-
-        this.blook = undefined;
     }
 }
 
