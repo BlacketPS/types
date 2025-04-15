@@ -8,6 +8,6 @@ export class GlobalBoost {
     constructor(partial: Partial<GlobalBoost>) {
         Object.assign(this, partial);
 
-        this.user = new PublicUser(partial.user);
+        if (this.user) this.user = new PublicUser(partial.user);
     }
 }
