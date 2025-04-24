@@ -407,21 +407,19 @@ export interface Pack {
   enabled: boolean;
   imageId: number;
   iconId: number;
-  innerColor: string;
-  outerColor: string;
+  backgroundId: number;
   priority: number;
   createdAt: Date;
   updatedAt: Date;
   blook?: Blook[];
   image?: Resource;
   icon?: Resource;
+  background?: Resource;
 }
 
 export interface Product {
   id: number;
-  name: string;
-  description: string | null;
-  price: number;
+  stripeProductId: string | null;
   imageId: number;
   color1: string;
   color2: string;
@@ -433,9 +431,6 @@ export interface Product {
   bannerId: number | null;
   groupId: number | null;
   isSubscription: boolean | null;
-  monthlyPrice: number | null;
-  yearlyPrice: number | null;
-  lifetimePrice: number | null;
   priority: number;
   createdAt: Date;
   updatedAt: Date;
@@ -494,6 +489,7 @@ export interface Resource {
   items?: Item[];
   packIcons?: Pack[];
   packImages?: Pack[];
+  packBackgrounds?: Pack[];
   products?: Product[];
   userBanners?: User[];
 }
@@ -792,6 +788,7 @@ export interface UserTitle {
 export interface UserSubscription {
   id: number;
   userId: string;
+  stripeSubscriptionId: string;
   productId: number;
   createdAt: Date;
   updatedAt: Date;
