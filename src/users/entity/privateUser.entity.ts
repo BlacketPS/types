@@ -100,8 +100,8 @@ export class PrivateUser {
             resourceId: (this.avatar as UserBlook).blook.imageId
         };
 
-        this.customAvatar = (this.customAvatar as Upload)?.path ?? null;
-        this.customBanner = (this.customBanner as Upload)?.path ?? null;
+        this.customAvatar = (this.customAvatar as Upload) ?? null;
+        this.customBanner = (this.customBanner as Upload) ?? null;
 
         this.titles = (this.titles as UserTitle[]).map((title) => title.titleId);
         this.fonts = (this.fonts as UserFont[]).map((font) => font.fontId);

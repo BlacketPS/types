@@ -33,7 +33,7 @@ export class NewsNewsPostEntity {
         this.author = new PublicUser(this.author as PublicUser);
 
         this.imageId = undefined;
-        this.image = (this.image as Upload).path;
+        this.image = (this.image as Upload);
 
         if (!this.myVote) this.myVote = null;
     }

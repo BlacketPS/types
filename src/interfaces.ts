@@ -549,7 +549,8 @@ export interface Transaction {
 
 export interface Upload {
   id: number;
-  path: string;
+  uploadId: string;
+  filename: string;
   userId: string;
   createdAt: Date;
   updatedAt: Date;
