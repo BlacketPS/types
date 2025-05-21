@@ -39,8 +39,8 @@ export class PrivateUser {
 
     bannerId?: number;
 
-    customAvatar?: string | Upload;
-    customBanner?: string | Upload;
+    customAvatar?: Upload;
+    customBanner?: Upload;
 
     titleId: number;
     fontId: number;
