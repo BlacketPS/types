@@ -793,8 +793,9 @@ export interface UserSubscription {
   productId: number;
   createdAt: Date;
   updatedAt: Date;
+  expiresAt: Date;
   user?: User;
-  subscription?: Product;
+  product?: Product;
 }
 
 export interface UserNewsPostVote {

@@ -1,6 +1,6 @@
 import { Exclude } from "class-transformer";
-import type { UserBlook, UserItem, UserStatistic, UserDiscord, UserPaymentMethod, UserGroup, Group, PermissionType, UserGuild, UserTitle, UserBanner, UserFont, Upload, IpAddress, Room } from "../../interfaces";
-import { UserAvatar, UserBlookObject, UserSettings } from "./interface";
+import type { UserBlook, UserItem, UserStatistic, UserDiscord, UserPaymentMethod, UserGroup, Group, PermissionType, UserGuild, UserTitle, UserBanner, UserFont, Upload, IpAddress, Room, UserSubscription } from "../../interfaces";
+import { UserAvatar, UserSettings } from "./interface";
 
 export class PrivateUser {
     id: string;
@@ -28,6 +28,9 @@ export class PrivateUser {
 
     @Exclude()
     stripeCustomerId: string = undefined;
+
+    @Exclude()
+    subscriptionId: number = undefined;
 
     @Exclude()
     ipAddressId: number = undefined;
@@ -64,12 +67,14 @@ export class PrivateUser {
     createdAt: Date;
     updatedAt: Date;
 
-    blooks: UserBlook[] = []; // | UserBlookObject = [];
+    blooks: UserBlook[] = [];
     items: UserItem[] = [];
 
     settings: UserSettings;
 
     paymentMethods: UserPaymentMethod[];
+
+    subscription: UserSubscription;
 
     guild: UserGuild[];
 
@@ -91,6 +96,7 @@ export class PrivateUser {
         this.customBannerId = undefined;
         this.discordId = undefined;
         this.stripeCustomerId = undefined;
+        this.subscriptionId = undefined;
         this.ipAddressId = undefined;
         this.ipAddress = undefined;
 
@@ -117,15 +123,6 @@ export class PrivateUser {
             ...this.permissions,
             ...this.groups.reduce((acc, group) => [...acc, ...group.group.permissions], [])
         ])];
-
-        // // converts UserBlook to UserBlookObject
-        // if (this.blooks) this.blooks = (this.blooks as UserBlook[])
-        //     .flatMap((blook) => blook.blookId)
-        //     .reduce((acc, curr) => {
-        //         const key = String(curr);
-
-        //         return { ...acc, [key]: acc[key] ? ++acc[key] : 1 };
-        //     }, {});
 
         if (this.groups) this.groups = undefined;
 

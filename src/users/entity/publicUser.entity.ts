@@ -1,7 +1,7 @@
 import { Exclude } from "class-transformer";
 import { PrivateUser } from "./privateUser.entity";
 import { UserSettings } from "./interface";
-import { PermissionType, UserPaymentMethod } from "../../interfaces";
+import { PermissionType, UserPaymentMethod, UserSubscription } from "../../interfaces";
 
 export class PublicUser extends PrivateUser {
     @Exclude()
@@ -12,6 +12,9 @@ export class PublicUser extends PrivateUser {
 
     @Exclude()
     paymentMethods: UserPaymentMethod[] = undefined;
+
+    @Exclude()
+    subscription: UserSubscription = undefined;
 
     @Exclude()
     settings: UserSettings = undefined;
@@ -31,6 +34,7 @@ export class PublicUser extends PrivateUser {
         this.email = undefined;
         this.emailVerified = undefined;
         this.paymentMethods = undefined;
+        this.subscription = undefined;
         this.settings = undefined;
         this.permissions = undefined;
         this.lastClaimed = undefined;
