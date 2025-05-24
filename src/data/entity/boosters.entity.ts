@@ -14,7 +14,7 @@ export class DataBoostersEntity {
     constructor(partial: Partial<DataBoostersEntity>) {
         Object.assign(this, partial);
 
-        this.global.chance = new GlobalBoost(partial.global?.chance);
-        this.global.shiny = new GlobalBoost(partial.global?.shiny);
+        if (this.global?.chance) this.global.chance = new GlobalBoost(partial.global?.chance);
+        if (this.global?.shiny) this.global.shiny = new GlobalBoost(partial.global?.shiny);
     }
 }

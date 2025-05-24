@@ -110,6 +110,15 @@ export enum PermissionTypeEnum {
 }
 export type PermissionType = "CREATE_REPORTS" | "CHANGE_USERNAME" | "NO_ADS" | "CHANGE_NAME_COLOR_TIER_1" | "EARLY_ACCESS_TIER_1" | "USE_CHAT_COLORS" | "UPLOAD_FILES_SMALL" | "MORE_AUCTIONS_TIER_1" | "CREATE_GUILDS" | "UPLOAD_FILES_MEDIUM" | "LESS_AUCTION_TAX" | "MORE_CHAT_BADGE_TIER_1" | "CUSTOM_TRADING_TABLE_COLOR" | "CUSTOM_AVATAR" | "CUSTOM_BANNER" | "EARLY_ACCESS_TIER_2" | "UPLOAD_FILES_LARGE" | "CHANGE_NAME_COLOR_TIER_2" | "MORE_AUCTIONS_TIER_2" | "MORE_CHAT_BADGE_TIER_2" | "MUTE_USERS" | "BAN_USERS" | "MANAGE_MESSAGES" | "VIEW_AUDIT" | "MANAGE_REPORTS" | "REVERT_AUDIT" | "BLACKLIST_USERS" | "MANAGE_USER_BLOOKS" | "MANAGE_USER_ITEMS" | "MANAGE_USER_TITLES" | "MANAGE_USER_BANNERS" | "MANAGE_USER_FONTS" | "MANAGE_NEWS_POSTS" | "MANAGE_USER_GROUPS" | "MANAGE_CHAT_ROOMS" | "MANAGE_DATA" | "DELETE_USERS" | "MANAGE_GROUPS";
 
+export enum TransactionStatusEnum {
+  PENDING = "PENDING",
+  COMPLETED = "COMPLETED",
+  FAILED = "FAILED",
+  REFUNDED = "REFUNDED",
+  DISPUTED = "DISPUTED"
+}
+export type TransactionStatus = "PENDING" | "COMPLETED" | "FAILED" | "REFUNDED" | "DISPUTED";
+
 export enum BlookObtainMethodEnum {
   UNKNOWN = "UNKNOWN",
   PACK_OPEN = "PACK_OPEN",
@@ -541,6 +550,7 @@ export interface Transaction {
   productId: number;
   paymentMethodId: number;
   stripePaymentId: string;
+  status: TransactionStatus;
   createdAt: Date;
   user?: User;
   product?: Product;
