@@ -46,7 +46,7 @@ export async function openPack(blooks: Blook[], rarities: Rarity[], amount: numb
         return {
             id: blook.id,
             chance: blook.chance * ((rarity.affectedByBooster ? (booster ?? 1) : 1)),
-            shinyChance: 0.001 * (shinyBooster ?? 1)
+            shinyChance: 0.01 * (shinyBooster ?? 1)
         }
 	});
 

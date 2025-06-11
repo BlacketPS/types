@@ -476,10 +476,13 @@ export interface Rarity {
   animationType: RarityAnimationType;
   experience: number;
   affectedByBooster: boolean;
+  imageId: number | null;
+  priority: number;
   createdAt: Date;
   updatedAt: Date;
   blook?: Blook[];
   item?: Item[];
+  image?: Resource | null;
 }
 
 export interface Resource {
@@ -501,6 +504,7 @@ export interface Resource {
   packBackgrounds?: Pack[];
   products?: Product[];
   userBanners?: User[];
+  rarities?: Rarity[];
 }
 
 export interface Room {
