@@ -8,5 +8,6 @@ export enum BadRequest {
     AUCTIONS_INVALID_DURATION = "The duration you entered is invalid.",
     SETTINGS_INVALID_SETTING_VALUE = "The value you entered for the setting is invalid.",
     SETTINGS_OTP_ALREADY_ENABLED = "You have already enabled OTP on your account.",
-    STAFF_ADMIN_INVALID_PRIORITIES = "Invalid priorities."
+    STAFF_ADMIN_INVALID_PRIORITIES = "Invalid priorities.",
+    PRODUCT_QUANTITY_CAPPED = "This product has a maximum purchase limit of 1."
 };

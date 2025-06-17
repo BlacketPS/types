@@ -3,10 +3,10 @@ import { Product, ProductType } from "../../interfaces";
 
 export class StripeProductEntity {
     @Exclude()
-    stripeProductId: string = undefined;
+    stripeProductId?: string = undefined;
 
     @Exclude()
-    stripePriceId: string = undefined;
+    stripePriceId?: string = undefined;
 
     @Exclude()
     groupId?: number = undefined;
@@ -17,12 +17,16 @@ export class StripeProductEntity {
     fontId?: number;
     bannerId?: number;
 
+    tokens: number;
+    gems: number;
+
     id: number;
 
     name: string;
     description: string;
 
     price: number;
+    subscriptionPrice?: number;
 
     imageId: number;
 
@@ -34,6 +38,8 @@ export class StripeProductEntity {
     priority: number;
 
     isSubscription: boolean;
+
+    isQuantityCapped: boolean;
 
     createdAt: Date;
     updatedAt: Date;

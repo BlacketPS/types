@@ -119,6 +119,12 @@ export enum TransactionStatusEnum {
 }
 export type TransactionStatus = "PENDING" | "COMPLETED" | "FAILED" | "REFUNDED" | "DISPUTED";
 
+export enum CurrencyTypeEnum {
+  USD = "USD",
+  GEM = "GEM"
+}
+export type CurrencyType = "USD" | "GEM";
+
 export enum BlookObtainMethodEnum {
   UNKNOWN = "UNKNOWN",
   PACK_OPEN = "PACK_OPEN",
@@ -162,6 +168,13 @@ export enum SettingFriendRequestEnum {
   MUTUAL = "MUTUAL"
 }
 export type SettingFriendRequest = "ON" | "OFF" | "MUTUAL";
+
+export enum UserSubscriptionStatusEnum {
+  ACTIVE = "ACTIVE",
+  INACTIVE = "INACTIVE",
+  CANCELED = "CANCELED"
+}
+export type UserSubscriptionStatus = "ACTIVE" | "INACTIVE" | "CANCELED";
 
 export interface Auction {
   id: number;
@@ -333,6 +346,7 @@ export interface IpAddress {
   users?: User[];
   userIpAddresses?: UserIpAddress[];
   blacklists?: Blacklist[];
+  transactions?: Transaction[];
 }
 
 export interface Item {
@@ -429,6 +443,11 @@ export interface Pack {
 export interface Product {
   id: number;
   stripeProductId: string | null;
+  stripePriceId: string | null;
+  name: string;
+  description: string | null;
+  price: number;
+  subscriptionPrice: number | null;
   imageId: number;
   color1: string;
   color2: string;
@@ -439,7 +458,10 @@ export interface Product {
   fontId: number | null;
   bannerId: number | null;
   groupId: number | null;
+  tokens: number | null;
+  gems: number | null;
   isSubscription: boolean | null;
+  isQuantityCapped: boolean | null;
   priority: number;
   createdAt: Date;
   updatedAt: Date;
@@ -548,17 +570,20 @@ export interface Title {
 }
 
 export interface Transaction {
-  id: number;
+  id: string;
   userId: string;
-  price: number;
+  amount: number;
+  quantity: number;
+  currency: CurrencyType;
   productId: number;
   paymentMethodId: number;
-  stripePaymentId: string;
+  ipAddressId: number;
   status: TransactionStatus;
   createdAt: Date;
   user?: User;
   product?: Product;
   paymentMethod?: UserPaymentMethod;
+  ipAddress?: IpAddress;
 }
 
 export interface Upload {
@@ -596,8 +621,7 @@ export interface User {
   updatedAt: Date;
   lastSeen: Date;
   stripeCustomerId: string | null;
-  subscriptionId: number | null;
-  subscription?: UserSubscription | null;
+  subscriptions?: UserSubscription[];
   permissions: PermissionType[];
   bids?: AuctionBid[];
   messages?: Message[];
@@ -805,9 +829,10 @@ export interface UserSubscription {
   userId: string;
   stripeSubscriptionId: string;
   productId: number;
+  status: UserSubscriptionStatus;
   createdAt: Date;
   updatedAt: Date;
-  expiresAt: Date;
+  expiresAt: Date | null;
   user?: User;
   product?: Product;
 }

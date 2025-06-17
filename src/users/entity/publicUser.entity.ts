@@ -14,7 +14,7 @@ export class PublicUser extends PrivateUser {
     paymentMethods: UserPaymentMethod[] = undefined;
 
     @Exclude()
-    subscription: UserSubscription = undefined;
+    subscriptions: UserSubscription[] = [];
 
     @Exclude()
     settings: UserSettings = undefined;
@@ -28,16 +28,20 @@ export class PublicUser extends PrivateUser {
     @Exclude()
     lastSeen: Date = undefined;
 
+    @Exclude()
+    gems: number = undefined;
+
     constructor(partial: Partial<PublicUser>) {
         super(partial);
 
         this.email = undefined;
         this.emailVerified = undefined;
         this.paymentMethods = undefined;
-        this.subscription = undefined;
+        this.subscriptions = undefined;
         this.settings = undefined;
         this.permissions = undefined;
         this.lastClaimed = undefined;
         this.lastSeen = undefined;
+        this.gems = undefined;
     }
 }

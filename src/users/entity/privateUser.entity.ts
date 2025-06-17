@@ -30,7 +30,7 @@ export class PrivateUser {
     stripeCustomerId: string = undefined;
 
     @Exclude()
-    subscriptionId: number = undefined;
+    subscriptions: UserSubscription[] = [];
 
     @Exclude()
     ipAddressId: number = undefined;
@@ -74,7 +74,9 @@ export class PrivateUser {
 
     paymentMethods: UserPaymentMethod[];
 
-    subscription: UserSubscription;
+    subscription?: UserSubscription;
+
+    gems: number;
 
     guild: UserGuild[];
 
@@ -96,7 +98,6 @@ export class PrivateUser {
         this.customBannerId = undefined;
         this.discordId = undefined;
         this.stripeCustomerId = undefined;
-        this.subscriptionId = undefined;
         this.ipAddressId = undefined;
         this.ipAddress = undefined;
 
@@ -115,16 +116,41 @@ export class PrivateUser {
 
         if (this.paymentMethods) this.paymentMethods = this.paymentMethods.map((method) => ({ ...method, userId: undefined }));
 
+        this.badges = [];
+
         // sorts permissions including group permissions
-        if (this.groups) this.badges = this.groups
-            .reduce((acc, group) => [...acc, { ...group.group, permissions: undefined, deletedAt: undefined }], [])
+        if (this.groups) this.badges = this.groups.reduce((acc, group) => [...acc, group.group], [])
             .filter((badge) => badge.imageId !== null);
+        if (this.subscriptions) this.badges = [
+            ...this.badges,
+            ...this.subscriptions.reduce((acc, subscription) => {
+                if (subscription?.product?.group?.imageId !== null) {
+                    return [
+                        ...acc,
+                        {
+                            ...subscription?.product?.group,
+                            permissions: undefined,
+                            deletedAt: undefined,
+                            discordRoleId: undefined
+                        }
+                    ]
+                }
+                return acc;
+            }, [])
+        ];
         if (this.permissions && this.groups) this.permissions = [...new Set([
             ...this.permissions,
-            ...this.groups.reduce((acc, group) => [...acc, ...group.group.permissions], [])
+            ...this.groups.reduce((acc, group) => [...acc, ...group.group.permissions], []),
+            ...this.subscriptions.reduce((acc, subscription) => [...acc, ...subscription?.product?.group?.permissions], [])
         ])];
 
         if (this.groups) this.groups = undefined;
+        if (this.subscriptions[0]) this.subscription = {
+            ...this.subscriptions[0],
+            product: undefined,
+            stripeSubscriptionId: undefined
+        }
+        if (this.subscriptions) this.subscriptions = undefined;
 
         if (this.settings) this.settings.otpEnabled = this.settings.otpSecret ? true : false;
         if (this.settings) this.settings.otpSecret = undefined;
