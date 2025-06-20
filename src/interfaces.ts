@@ -345,6 +345,7 @@ export interface IpAddress {
   updatedAt: Date;
   users?: User[];
   userIpAddresses?: UserIpAddress[];
+  userSubscriptions?: UserSubscription[];
   blacklists?: Blacklist[];
   transactions?: Transaction[];
 }
@@ -575,6 +576,7 @@ export interface Transaction {
   amount: number;
   quantity: number;
   currency: CurrencyType;
+  stripePaymentId: string | null;
   productId: number;
   paymentMethodId: number;
   ipAddressId: number;
@@ -620,6 +622,7 @@ export interface User {
   createdAt: Date;
   updatedAt: Date;
   lastSeen: Date;
+  readRulesAt: Date | null;
   stripeCustomerId: string | null;
   subscriptions?: UserSubscription[];
   permissions: PermissionType[];
@@ -779,10 +782,11 @@ export interface UserPaymentMethod {
   userId: string;
   paymentMethodId: string;
   lastFour: string;
-  createdAt: Date;
-  updatedAt: Date;
   cardBrand: string;
   primary: boolean;
+  createdAt: Date;
+  updatedAt: Date;
+  deletedAt: Date | null;
   user?: User;
   transactions?: Transaction[];
 }
@@ -830,11 +834,13 @@ export interface UserSubscription {
   stripeSubscriptionId: string;
   productId: number;
   status: UserSubscriptionStatus;
+  ipAddressId: number;
   createdAt: Date;
   updatedAt: Date;
   expiresAt: Date | null;
   user?: User;
   product?: Product;
+  ipAddress?: IpAddress;
 }
 
 export interface UserNewsPostVote {

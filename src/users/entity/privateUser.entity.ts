@@ -67,6 +67,8 @@ export class PrivateUser {
     createdAt: Date;
     updatedAt: Date;
 
+    readRulesAt: Date;
+
     blooks: UserBlook[] = [];
     items: UserItem[] = [];
 

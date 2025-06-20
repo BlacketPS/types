@@ -17,5 +17,7 @@ export enum NotFound {
     UNKNOWN_CUSTOMER = "That customer does not exist.",
     UNKNOWN_PRODUCT = "That product does not exist.",
     UNKNOWN_UPLOAD = "That upload does not exist.",
-    UNKNOWN_SUBSCRIPTION = "That subscription does not exist."
+    UNKNOWN_SUBSCRIPTION = "That subscription does not exist.",
+    UNKNOWN_TRANSACTION = "That transaction does not exist.",
+    UNKNOWN_INVOICE = "That invoice does not exist."
 };
