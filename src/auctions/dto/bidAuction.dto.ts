@@ -1,4 +1,4 @@
-import { IsNotEmpty, IsNumber, Max, Min } from "class-validator";
+import { IsNotEmpty, IsNumber, IsString, Max, Min } from "class-validator";
 
 export class AuctionsBidAuctionDto {
     @IsNotEmpty()
@@ -6,6 +6,10 @@ export class AuctionsBidAuctionDto {
     @Min(1)
     @Max(999999999)
     readonly amount: number;
+
+    @IsNotEmpty()
+    @IsString()
+    readonly captchaToken: string;
 }
 
 export default AuctionsBidAuctionDto;
