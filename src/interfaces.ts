@@ -632,6 +632,8 @@ export interface User {
   sessions?: Session[];
   friendedBy?: User[];
   friends?: User[];
+  blockedBy?: User[];
+  blocked?: User[];
   avatar?: UserBlook | null;
   banner?: Resource | null;
   customAvatar?: Upload | null;
