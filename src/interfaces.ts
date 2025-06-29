@@ -416,17 +416,17 @@ export interface Message {
   roomId: number;
   content: string;
   mentions: string[];
+  authorId: string;
   replyingToId: string | null;
-  edited: boolean;
-  deleted: boolean;
+  discordMessageId: string | null;
+  editedAt: Date | null;
   createdAt: Date;
   updatedAt: Date;
-  authorId: string;
+  deletedAt: Date | null;
   author?: User;
   replyingTo?: Message | null;
   replies?: Message[];
   room?: Room;
-  discordMessageId: string | null;
 }
 
 export interface NewsPost {
@@ -740,6 +740,9 @@ export interface UserBlook {
   initialObtainerId: string;
   obtainedBy: BlookObtainMethod;
   serial: number | null;
+  canSell: boolean;
+  canTrade: boolean;
+  canAuction: boolean;
   createdAt: Date;
   updatedAt: Date;
   blook?: Blook;
