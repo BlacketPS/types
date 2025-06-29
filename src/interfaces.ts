@@ -35,9 +35,10 @@ export enum ItemTypeEnum {
   NONE = "NONE",
   BOOSTER = "BOOSTER",
   TROPHY = "TROPHY",
-  PAINT_BUCKET = "PAINT_BUCKET"
+  PAINT_BUCKET = "PAINT_BUCKET",
+  DAILY_SPINNY_WHEEL_TICKET = "DAILY_SPINNY_WHEEL_TICKET"
 }
-export type ItemType = "NONE" | "BOOSTER" | "TROPHY" | "PAINT_BUCKET";
+export type ItemType = "NONE" | "BOOSTER" | "TROPHY" | "PAINT_BUCKET" | "DAILY_SPINNY_WHEEL_TICKET";
 
 export enum ItemShopItemTypeEnum {
   ITEM = "ITEM",
@@ -135,11 +136,12 @@ export type BlookObtainMethod = "UNKNOWN" | "PACK_OPEN" | "PURCHASE" | "STAFF";
 
 export enum ItemObtainMethodEnum {
   UNKNOWN = "UNKNOWN",
+  DAILY = "DAILY",
   ITEM_SHOP = "ITEM_SHOP",
   PURCHASE = "PURCHASE",
   STAFF = "STAFF"
 }
-export type ItemObtainMethod = "UNKNOWN" | "ITEM_SHOP" | "PURCHASE" | "STAFF";
+export type ItemObtainMethod = "UNKNOWN" | "DAILY" | "ITEM_SHOP" | "PURCHASE" | "STAFF";
 
 export enum GuildRoleEnum {
   MEMBER = "MEMBER",
@@ -755,11 +757,11 @@ export interface UserItem {
   userId: string;
   itemId: number;
   usesLeft: number;
-  initalObtainerId: string;
+  initialObtainerId: string;
   obtainedBy: ItemObtainMethod;
   createdAt: Date;
   updatedAt: Date;
-  initalObtainer?: User;
+  initialObtainer?: User;
   item?: Item;
   user?: User;
   auctions?: Auction[];
