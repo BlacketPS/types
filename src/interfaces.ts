@@ -111,6 +111,17 @@ export enum PermissionTypeEnum {
 }
 export type PermissionType = "CREATE_REPORTS" | "CHANGE_USERNAME" | "NO_ADS" | "CHANGE_NAME_COLOR_TIER_1" | "EARLY_ACCESS_TIER_1" | "USE_CHAT_COLORS" | "UPLOAD_FILES_SMALL" | "MORE_AUCTIONS_TIER_1" | "CREATE_GUILDS" | "UPLOAD_FILES_MEDIUM" | "LESS_AUCTION_TAX" | "MORE_CHAT_BADGE_TIER_1" | "CUSTOM_TRADING_TABLE_COLOR" | "CUSTOM_AVATAR" | "CUSTOM_BANNER" | "EARLY_ACCESS_TIER_2" | "UPLOAD_FILES_LARGE" | "CHANGE_NAME_COLOR_TIER_2" | "MORE_AUCTIONS_TIER_2" | "MORE_CHAT_BADGE_TIER_2" | "MUTE_USERS" | "BAN_USERS" | "MANAGE_MESSAGES" | "VIEW_AUDIT" | "MANAGE_REPORTS" | "REVERT_AUDIT" | "BLACKLIST_USERS" | "MANAGE_USER_BLOOKS" | "MANAGE_USER_ITEMS" | "MANAGE_USER_TITLES" | "MANAGE_USER_BANNERS" | "MANAGE_USER_FONTS" | "MANAGE_NEWS_POSTS" | "MANAGE_USER_GROUPS" | "MANAGE_CHAT_ROOMS" | "MANAGE_DATA" | "DELETE_USERS" | "MANAGE_GROUPS";
 
+export enum SpinnyWheelRewardTypeEnum {
+  ITEM = "ITEM",
+  BLOOK = "BLOOK",
+  TITLE = "TITLE",
+  FONT = "FONT",
+  BANNER = "BANNER",
+  TOKENS = "TOKENS",
+  GEMS = "GEMS"
+}
+export type SpinnyWheelRewardType = "ITEM" | "BLOOK" | "TITLE" | "FONT" | "BANNER" | "TOKENS" | "GEMS";
+
 export enum TransactionStatusEnum {
   PENDING = "PENDING",
   COMPLETED = "COMPLETED",
@@ -237,6 +248,7 @@ export interface Banner {
   userBanner?: UserBanner[];
   itemShop?: ItemShop[];
   products?: Product[];
+  spinnyWheelRewards?: SpinnyWheelReward[];
 }
 
 export interface Blacklist {
@@ -267,9 +279,10 @@ export interface Blook {
   image?: Resource;
   pack?: Pack | null;
   rarity?: Rarity;
-  itemShop?: ItemShop[];
-  product?: Product[];
-  userBlook?: UserBlook[];
+  itemShops?: ItemShop[];
+  products?: Product[];
+  userBlooks?: UserBlook[];
+  spinnyWheelRewards?: SpinnyWheelReward[];
 }
 
 export interface Boost {
@@ -307,6 +320,7 @@ export interface Font {
   products?: Product[];
   users?: UserFont[];
   usersUsing?: User[];
+  spinnyWheelRewards?: SpinnyWheelReward[];
 }
 
 export interface Group {
@@ -369,9 +383,11 @@ export interface Item {
   updatedAt: Date;
   resource?: Resource;
   rarity?: Rarity;
-  itemShop?: ItemShop[];
+  itemShops?: ItemShop[];
   products?: Product[];
   users?: UserItem[];
+  spinnyWheels?: SpinnyWheel[];
+  spinnyWheelRewards?: SpinnyWheelReward[];
 }
 
 export interface ItemShop {
@@ -549,6 +565,38 @@ export interface Session {
   user?: User;
 }
 
+export interface SpinnyWheel {
+  id: number;
+  name: string;
+  itemId: number;
+  item?: Item;
+  rewards?: SpinnyWheelReward[];
+  createdAt: Date;
+  updatedAt: Date;
+}
+
+export interface SpinnyWheelReward {
+  id: number;
+  spinnyWheelId: number;
+  spinnyWheel?: SpinnyWheel;
+  type: SpinnyWheelRewardType;
+  chance: number;
+  itemId: number | null;
+  blookId: number | null;
+  titleId: number | null;
+  fontId: number | null;
+  bannerId: number | null;
+  tokens: number | null;
+  gems: number | null;
+  createdAt: Date;
+  updatedAt: Date;
+  item?: Item | null;
+  blook?: Blook | null;
+  title?: Title | null;
+  font?: Font | null;
+  banner?: Banner | null;
+}
+
 export interface Store {
   id: number;
   name: string;
@@ -570,6 +618,7 @@ export interface Title {
   products?: Product[];
   users?: UserTitle[];
   usersUsing?: User[];
+  spinnyWheelRewards?: SpinnyWheelReward[];
 }
 
 export interface Transaction {
