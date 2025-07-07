@@ -60,14 +60,14 @@ export enum ProductTypeEnum {
 export type ProductType = "ITEM" | "BLOOK" | "TITLE" | "FONT" | "BANNER" | "OTHER";
 
 export enum RarityAnimationTypeEnum {
-  UNCOMMON = "UNCOMMON",
+  COMMON = "COMMON",
   RARE = "RARE",
   EPIC = "EPIC",
   LEGENDARY = "LEGENDARY",
   CHROMA = "CHROMA",
-  IRIDESCENT = "IRIDESCENT"
+  MYTHICAL = "MYTHICAL"
 }
-export type RarityAnimationType = "UNCOMMON" | "RARE" | "EPIC" | "LEGENDARY" | "CHROMA" | "IRIDESCENT";
+export type RarityAnimationType = "COMMON" | "RARE" | "EPIC" | "LEGENDARY" | "CHROMA" | "MYTHICAL";
 
 export enum PermissionTypeEnum {
   CREATE_REPORTS = "CREATE_REPORTS",
