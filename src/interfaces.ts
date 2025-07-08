@@ -450,6 +450,7 @@ export interface Pack {
   imageId: number;
   iconId: number;
   backgroundId: number;
+  ambienceId: number | null;
   priority: number;
   createdAt: Date;
   updatedAt: Date;
@@ -457,6 +458,7 @@ export interface Pack {
   image?: Resource;
   icon?: Resource;
   background?: Resource;
+  ambience?: Resource | null;
 }
 
 export interface Product {
@@ -543,6 +545,7 @@ export interface Resource {
   packIcons?: Pack[];
   packImages?: Pack[];
   packBackgrounds?: Pack[];
+  packAmbiences?: Pack[];
   products?: Product[];
   userBanners?: User[];
   rarities?: Rarity[];
@@ -581,6 +584,7 @@ export interface SpinnyWheelReward {
   spinnyWheel?: SpinnyWheel;
   type: SpinnyWheelRewardType;
   chance: number;
+  quantity: number;
   itemId: number | null;
   blookId: number | null;
   titleId: number | null;
@@ -850,6 +854,7 @@ export interface UserPaymentMethod {
 export interface UserSetting {
   id: string;
   openPacksInstantly: boolean;
+  onlyRareSounds: boolean;
   friendRequests: SettingFriendRequest;
   categoriesClosed: string[];
   tutorialsCompleted: string[];
