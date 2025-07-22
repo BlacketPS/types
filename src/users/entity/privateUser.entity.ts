@@ -1,6 +1,6 @@
 import { Exclude } from "class-transformer";
 import type { UserBlook, UserItem, UserStatistic, UserDiscord, UserPaymentMethod, UserGroup, Group, PermissionType, UserGuild, UserTitle, UserBanner, UserFont, Upload, IpAddress, Room, UserSubscription } from "../../interfaces";
-import { UserAvatar, UserSettings } from "./interface";
+import { UserSettings } from "./interface";
 
 export class PrivateUser {
     id: string;
@@ -38,7 +38,7 @@ export class PrivateUser {
     @Exclude()
     ipAddress: IpAddress = undefined;
 
-    avatar?: UserAvatar | UserBlook;
+    avatar?: UserBlook;
 
     bannerId?: number;
 
@@ -102,12 +102,6 @@ export class PrivateUser {
         this.stripeCustomerId = undefined;
         this.ipAddressId = undefined;
         this.ipAddress = undefined;
-
-        if (this.avatar) this.avatar = {
-            ...this.avatar,
-            blook: undefined,
-            resourceId: (this.avatar as UserBlook).blook.imageId
-        };
 
         this.customAvatar = (this.customAvatar as Upload) ?? null;
         this.customBanner = (this.customBanner as Upload) ?? null;

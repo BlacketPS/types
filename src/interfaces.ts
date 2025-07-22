@@ -264,18 +264,22 @@ export interface Blacklist {
 export interface Blook {
   id: number;
   name: string;
+  description: string | null;
   chance: number;
   price: number;
   rarityId: number;
   imageId: number;
   backgroundId: number;
+  videoId: number | null;
   packId: number | null;
   onlyOnDay: DayType | null;
+  isBig: boolean;
   shinyHue: number | null;
   priority: number;
   createdAt: Date;
   updatedAt: Date;
   background?: Resource;
+  video?: Resource | null;
   image?: Resource;
   pack?: Pack | null;
   rarity?: Rarity;
@@ -369,7 +373,7 @@ export interface IpAddress {
 export interface Item {
   id: number;
   name: string;
-  description: string;
+  description: string | null;
   rarityId: number;
   imageId: number;
   type: ItemType;
@@ -447,6 +451,7 @@ export interface Pack {
   name: string;
   price: number;
   enabled: boolean;
+  hidden: boolean;
   imageId: number;
   iconId: number;
   backgroundId: number;
@@ -537,6 +542,7 @@ export interface Resource {
   banners?: Banner[];
   blookBackgrounds?: Blook[];
   blooks?: Blook[];
+  blookVideos?: Blook[];
   emojis?: Emoji[];
   fonts?: Font[];
   groups?: Group[];
