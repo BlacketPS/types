@@ -88,9 +88,6 @@ export class PrivateUser {
 
     discord?: UserDiscord;
 
-    hasPermission: (permission: PermissionType) => boolean;
-    setTokens: (tokens: number) => number;
-
     constructor(partial: Partial<PrivateUser>) {
         Object.assign(this, partial);
 
