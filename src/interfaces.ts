@@ -683,6 +683,8 @@ export interface User {
   lastSeen: Date;
   readRulesAt: Date | null;
   stripeCustomerId: string | null;
+  isSystem: boolean;
+  isAi: boolean;
   subscriptions?: UserSubscription[];
   permissions: PermissionType[];
   bids?: AuctionBid[];

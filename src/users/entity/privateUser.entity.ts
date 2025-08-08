@@ -60,6 +60,9 @@ export class PrivateUser {
 
     permissions: PermissionType[];
 
+    isSystem: boolean = false;
+    isAi: boolean = false;
+
     lastClaimed: Date;
 
     lastSeen: Date;
