@@ -6,6 +6,11 @@ export class ChatCreateMessageDto {
     @MaxLength(2048)
     readonly content: string;
 
+    @IsNotEmpty()
+    @IsString()
+    @MaxLength(8)
+    readonly nonce: string;
+
     @IsOptional()
     @IsString()
     readonly replyingTo?: string;
