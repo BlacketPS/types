@@ -418,6 +418,7 @@ export interface Message {
   roomId: number;
   content: string;
   mentions: string[];
+  color: string | null;
   authorId: string;
   replyingToId: string | null;
   discordMessageId: string | null;
@@ -862,8 +863,8 @@ export interface UserSetting {
   openPacksInstantly: boolean;
   onlyRareSounds: boolean;
   friendRequests: SettingFriendRequest;
-  categoriesClosed: string[];
   tutorialsCompleted: string[];
+  chatColor: string | null;
   otpSecret: string | null;
   user?: User;
 }

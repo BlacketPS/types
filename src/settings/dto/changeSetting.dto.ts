@@ -1,10 +1,10 @@
-import { IsNotEmpty } from "class-validator";
+import { IsNotEmpty, IsOptional } from "class-validator";
 
 export class SettingsChangeSettingDto {
     @IsNotEmpty()
     readonly key: string;
 
-    @IsNotEmpty()
+    @IsOptional()
     readonly value: any;
 }
 
