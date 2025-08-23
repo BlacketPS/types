@@ -56,6 +56,7 @@ export class PrivateUser {
     color: string;
 
     tokens: number;
+    diamonds: number;
     experience: number;
 
     permissions: PermissionType[];
@@ -81,7 +82,7 @@ export class PrivateUser {
 
     subscription?: UserSubscription;
 
-    gems: number;
+    crystals: number;
 
     guild: UserGuild[];
 

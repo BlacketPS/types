@@ -116,9 +116,10 @@ export enum SpinnyWheelRewardTypeEnum {
   FONT = "FONT",
   BANNER = "BANNER",
   TOKENS = "TOKENS",
-  GEMS = "GEMS"
+  CRYSTALS = "CRYSTALS",
+  DIAMONDS = "DIAMONDS"
 }
-export type SpinnyWheelRewardType = "ITEM" | "BLOOK" | "TITLE" | "FONT" | "BANNER" | "TOKENS" | "GEMS";
+export type SpinnyWheelRewardType = "ITEM" | "BLOOK" | "TITLE" | "FONT" | "BANNER" | "TOKENS" | "CRYSTALS" | "DIAMONDS";
 
 export enum TransactionStatusEnum {
   PENDING = "PENDING",
@@ -131,9 +132,9 @@ export type TransactionStatus = "PENDING" | "COMPLETED" | "FAILED" | "REFUNDED" 
 
 export enum CurrencyTypeEnum {
   USD = "USD",
-  GEM = "GEM"
+  CRYSTAL = "CRYSTAL"
 }
-export type CurrencyType = "USD" | "GEM";
+export type CurrencyType = "USD" | "CRYSTAL";
 
 export enum BlookObtainMethodEnum {
   UNKNOWN = "UNKNOWN",
@@ -323,6 +324,7 @@ export interface Font {
   users?: UserFont[];
   usersUsing?: User[];
   spinnyWheelRewards?: SpinnyWheelReward[];
+  titles?: Title[];
 }
 
 export interface Group {
@@ -484,7 +486,8 @@ export interface Product {
   bannerId: number | null;
   groupId: number | null;
   tokens: number | null;
-  gems: number | null;
+  diamonds: number | null;
+  crystals: number | null;
   isSubscription: boolean | null;
   isQuantityCapped: boolean | null;
   priority: number;
@@ -596,7 +599,8 @@ export interface SpinnyWheelReward {
   fontId: number | null;
   bannerId: number | null;
   tokens: number | null;
-  gems: number | null;
+  crystals: number | null;
+  diamonds: number | null;
   createdAt: Date;
   updatedAt: Date;
   item?: Item | null;
@@ -620,9 +624,15 @@ export interface Store {
 export interface Title {
   id: number;
   name: string;
+  color: string;
+  fontId: number;
+  bold: boolean;
+  italic: boolean;
+  underline: boolean;
   priority: number;
   createdAt: Date;
   updatedAt: Date;
+  font?: Font;
   itemShop?: ItemShop[];
   products?: Product[];
   users?: UserTitle[];
@@ -675,7 +685,8 @@ export interface User {
   fontId: number;
   color: string;
   tokens: number;
-  gems: number;
+  diamonds: number;
+  crystals: number;
   experience: number;
   lastClaimed: Date;
   ipAddressId: number;

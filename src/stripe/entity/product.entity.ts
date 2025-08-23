@@ -18,7 +18,8 @@ export class StripeProductEntity {
     bannerId?: number;
 
     tokens: number;
-    gems: number;
+    diamonds: number;
+    crystals: number;
 
     id: number;
 

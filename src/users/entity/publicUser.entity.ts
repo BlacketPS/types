@@ -28,9 +28,6 @@ export class PublicUser extends PrivateUser {
     @Exclude()
     lastSeen: Date = undefined;
 
-    @Exclude()
-    gems: number = undefined;
-
     constructor(partial: Partial<PublicUser>) {
         super(partial);
 
@@ -42,6 +39,5 @@ export class PublicUser extends PrivateUser {
         this.permissions = undefined;
         this.lastClaimed = undefined;
         this.lastSeen = undefined;
-        this.gems = undefined;
     }
 }
